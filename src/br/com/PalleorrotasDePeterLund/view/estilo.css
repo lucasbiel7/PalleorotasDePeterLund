@@ -1,0 +1,15 @@
+/*
+ * Empty Stylesheet file.
+ */
+*{
+    -cor-primaria:#EFFEBA;
+    -cor-secundaria:#707F37;
+}
+
+.mainFxmlClass {
+    -fx-background-color: -cor-secundaria;
+}
+
+.fundo-escuro{
+    -fx-text-fill: white;
+}
