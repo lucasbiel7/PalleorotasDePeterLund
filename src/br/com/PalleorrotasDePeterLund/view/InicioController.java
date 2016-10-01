@@ -27,6 +27,7 @@ public class InicioController implements Initializable {
     private Button bt;
     
     
+    
     /**
      * Initializes the controller class.
      */
