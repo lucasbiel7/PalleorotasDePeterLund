@@ -21,6 +21,7 @@ public class InicioController implements Initializable {
     @FXML
     private AnchorPane apPrincipal;
     
+    
     /**
      * Initializes the controller class.
      */
