@@ -23,6 +23,8 @@ public class InicioController implements Initializable {
     private AnchorPane apPrincipal;
     @FXML
     private Button btOk;
+    @FXML
+    private Button bt;
     
     
     /**
