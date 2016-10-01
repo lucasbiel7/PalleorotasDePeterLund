@@ -24,7 +24,7 @@ public class InicioController implements Initializable {
     @FXML
     private Button btOk;
     @FXML
-    private Button bt;
+    private Button btTeste;
     
     
     
