@@ -49,8 +49,7 @@ public class FxManager {
     public static Stage carregarJanela(Parent parent, String title, Tipo... tipos) {
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
-        stage.setTitle(title);
-        
+        stage.setTitle(title + " - " + Application.NOME);
         for (Tipo tipo : tipos) {
             switch (tipo) {
                 case EXIT_ON_CLOSE:

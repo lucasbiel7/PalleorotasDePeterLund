@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.LoaderController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: -cor-secundaria;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.LoaderController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -15,6 +15,9 @@
             <Font name="System Bold" size="38.0" />
          </font>
       </Label>
-      <Label fx:id="lbCarregando" alignment="CENTER" layoutX="67.0" layoutY="343.0" styleClass="fundo-escuro" text="Carregando" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <Label fx:id="lbCarregando" alignment="CENTER" layoutX="67.0" layoutY="343.0" styleClass="fundo-escuro" text="Carregando" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

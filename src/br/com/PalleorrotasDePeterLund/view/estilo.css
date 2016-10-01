@@ -4,12 +4,28 @@
 *{
     -cor-primaria:#EFFEBA;
     -cor-secundaria:#707F37;
+    -cor-contraste-secundaria:#FFEC78;
 }
 
 .mainFxmlClass {
-    -fx-background-color: -cor-secundaria;
+    -fx-background-color: -cor-primaria;
 }
 
+
+
+.button-bar .button,.split-menu-button .label,.split-menu-button .arrow-button, .menu-item{
+    -fx-background-color:-cor-secundaria;
+    -fx-text-fill:white;
+}
+
+
+
+.button-bar .button:hover,.split-menu-button .label:hover,.split-menu-button .arrow-button:hover,.menu-item:hover,.menu-item .label:hover{
+    -fx-background-color:-cor-contraste-secundaria;
+    -fx-text-fill:black;
+}
+
+/*Especifico*/
 .fundo-escuro{
     -fx-text-fill: white;
 }
