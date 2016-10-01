@@ -5,12 +5,8 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.FxManager;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -21,8 +17,7 @@ public class StarttingFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        
-        
+        FxManager.carregarJanela(FxManager.carregarComponente("Loader"), "Carregando", FxManager.Tipo.EXIT_ON_CLOSE, FxManager.Tipo.UNRESIZABLE).show();
     }
 
     /**
