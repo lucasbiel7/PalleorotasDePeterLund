@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
@@ -25,7 +26,7 @@ public class FxManager {
     public static final String VIEW = "/br.com.PalleorrotasDePeterLund.control/".replace("control", "view").replace(".", "/");
 
     public enum Tipo {
-        EXIT_ON_CLOSE, MAXIMIZED, MODAL, UNRESIZABLE;
+        EXIT_ON_CLOSE, MAXIMIZED, MODAL, UNRESIZABLE,UNDECORATED;
     }
 
     //Carregar componentes fxmls
@@ -66,6 +67,9 @@ public class FxManager {
                     break;
                 case UNRESIZABLE:
                     stage.setResizable(false);
+                    break;
+                case UNDECORATED:
+                    stage.initStyle(StageStyle.UNDECORATED);
                     break;
             }
         }

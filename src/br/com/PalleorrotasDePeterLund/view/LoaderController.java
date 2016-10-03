@@ -6,12 +6,13 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.dao.UsuarioDAO;
+import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -44,8 +45,7 @@ public class LoaderController implements Initializable {
         loader.play();
         loader.setOnFinished((ActionEvent event) -> {
             ((Stage) apPrincipal.getScene().getWindow()).close();
-            FxManager.carregarJanela(FxManager.carregarComponente("Inicio"), "Ínicio", FxManager.Tipo.EXIT_ON_CLOSE, FxManager.Tipo.MAXIMIZED).show();
+            FxManager.carregarJanela(FxManager.carregarComponente("Inicio"), "Ínicio", FxManager.Tipo.MAXIMIZED).show();
         });
     }
-
 }

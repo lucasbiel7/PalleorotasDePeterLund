@@ -5,26 +5,57 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.InicioController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="413.0" prefWidth="762.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.InicioController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <ButtonBar layoutX="12.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="93.0" prefWidth="570.0">
+      <ButtonBar layoutX="23.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="93.0" prefWidth="762.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
          <buttons>
-            <Button mnemonicParsing="false" prefHeight="100.0" text="Curiosidades" />
-            <Button mnemonicParsing="false" prefHeight="100.0" text="Mapa" />
-            <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="129.0" text="Museu" />
-            <SplitMenuButton alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="92.0" text="Gruta">
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btSairActionEvent" prefHeight="100.0" text="Sair" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/sair.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="93.0" prefWidth="133.0" text="Curiosidades" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/curiosidade.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="100.0" text="Mapa" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/map.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="95.0" prefWidth="129.0" text="Museu" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/museu.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <SplitMenuButton alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="92.0" text="Gruta" wrapText="true">
               <items>
                 <MenuItem mnemonicParsing="false" text="Lapinha" />
                 <MenuItem mnemonicParsing="false" text="Rei do mato" />
                   <MenuItem mnemonicParsing="false" text="Maquiné" />
               </items>
             </SplitMenuButton>
-            <Button mnemonicParsing="false" prefHeight="94.0" prefWidth="121.0" text="Geologia" />
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="94.0" prefWidth="121.0" text="Geologia" wrapText="true" />
          </buttons>
       </ButtonBar>
    </children>
