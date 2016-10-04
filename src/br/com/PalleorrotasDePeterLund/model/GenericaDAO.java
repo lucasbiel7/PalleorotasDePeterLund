@@ -62,7 +62,7 @@ public class GenericaDAO<Entity> {
         return entitys;
     }
 
-    private void closeSession() {
+    protected void closeSession() {
         if (session.isOpen()) {
             if (session.getTransaction().isActive()) {
                 session.getTransaction().commit();

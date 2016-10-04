@@ -7,6 +7,7 @@ package br.com.PalleorrotasDePeterLund.control.dao;
 
 import br.com.PalleorrotasDePeterLund.model.GenericaDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -14,4 +15,15 @@ import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
  */
 public class UsuarioDAO extends GenericaDAO<Usuario> {
 
+    public Usuario pegarPorEmail(String email) {
+        entity = (Usuario) criteria.add(Restrictions.eq("email", email)).uniqueResult();
+        closeSession();
+        return entity;
+    }
+
+    public Usuario pegarPorFacebooId(String id) {
+         entity = (Usuario) criteria.add(Restrictions.eq("fbId", id)).uniqueResult();
+        closeSession();
+        return entity;
+    }
 }

@@ -5,14 +5,14 @@
  */
 package br.com.PalleorrotasDePeterLund.control;
 
+import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
+
 /**
  *
  * @author lucas
  */
-public class Application {
+public class Sessao {
 
-    public static final double VERSAO = 1.0;
-    public static final String NOME="Palleorrotas de Peter Lund";
-    public static String SECRET_APP = "52155bdf681ce07fc2bc7a1ae895d145";
-    public static String ID_APP = "1769034663357176";
+    public static Usuario usuario;
+
 }

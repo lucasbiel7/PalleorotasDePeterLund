@@ -6,12 +6,14 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.Sessao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,6 +45,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private void btLoginFacebookActionEvent(ActionEvent ae) {
-        
+        FxManager.carregarJanela(FxManager.carregarComponente("AutenticacaoFacebook"), "Autenticar com Facebook", FxManager.Tipo.MODAL).showAndWait();
+        if (Sessao.usuario != null) {
+            ((Stage) apPrincipal.getScene().getWindow()).close();
+        }
     }
 }
