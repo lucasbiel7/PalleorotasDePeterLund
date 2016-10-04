@@ -11,7 +11,7 @@
     -fx-background-color: -cor-primaria;
 }
 
-.button-bar .button,.split-menu-button .label,.split-menu-button .arrow-button, .menu-item{
+.button-bar .button,.split-menu-button .label,.split-menu-button .arrow-button, .menu-item, .button{
     -fx-background-color:-cor-secundaria;
     -fx-text-fill:white;
 }
@@ -22,6 +22,10 @@
 }
 
 .scroll-pane, .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.web-view, .web-view .scroll-bar .viewport, .web-view .viewport{
     -fx-background-color: transparent;
 }
 

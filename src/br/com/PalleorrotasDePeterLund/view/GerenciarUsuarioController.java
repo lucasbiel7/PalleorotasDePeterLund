@@ -7,33 +7,38 @@ package br.com.PalleorrotasDePeterLund.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.util.Duration;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author lucas
  */
-public class SobreController implements Initializable {
+public class GerenciarUsuarioController implements Initializable {
+
+    @FXML
+    private AnchorPane apPrincipal;
+    @FXML
+    private TextField tfUsuario;
+    @FXML
+    private PasswordField pf;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Platform.exit();
-                System.exit(0);
-            }
-        })).play();
+
     }
+
+    @FXML
+    private void btCadastrarActionEvent(ActionEvent ae) {
+        
+    }
+
 }
