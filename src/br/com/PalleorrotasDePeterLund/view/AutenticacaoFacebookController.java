@@ -49,8 +49,8 @@ public class AutenticacaoFacebookController implements Initializable {
                         String expiresIn = uri.substring(uri.indexOf("expires_in=")).replace("expires_in=", "");
                         facebookAuth.setExpireDate(Long.parseLong(expiresIn));
                         facebookAuth.setTokenCode(acessToken);
-                        ((Stage)webView.getScene().getWindow()).close();
                         facebookAuth.acess();
+                        ((Stage) webView.getScene().getWindow()).close();
                     }
                 }
             });

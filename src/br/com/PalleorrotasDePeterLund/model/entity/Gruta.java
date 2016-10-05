@@ -17,11 +17,11 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 public class Gruta {
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "varchar(64)")
     private String id;
     private String nome;
+    
 }
