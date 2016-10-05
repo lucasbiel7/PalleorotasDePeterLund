@@ -5,6 +5,7 @@
  */
 package br.com.PalleorrotasDePeterLund.model.entity;
 
+import br.com.PalleorrotasDePeterLund.model.Perfil;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -12,14 +13,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.GenericGenerator;
+import sun.misc.Perf;
 
 /**
  *
  * @author lucas
  */
 @Entity
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
     @Id
@@ -36,6 +40,16 @@ public class Usuario implements Serializable {
     private byte[] foto;
     private String fbId;
     private String login;
+    private Perfil perfil;
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+    
 
     public String getLogin() {
         return login;

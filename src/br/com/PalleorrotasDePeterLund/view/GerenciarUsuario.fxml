@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="519.0" prefWidth="609.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarUsuarioController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="519.0" prefWidth="609.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarUsuarioController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -41,25 +41,25 @@
             <Label text="Senha" GridPane.rowIndex="3" />
             <Label text="Data de nascimento" GridPane.rowIndex="4" />
             <Label text="Foto" GridPane.rowIndex="5" />
-            <TextField prefWidth="200.0" GridPane.columnIndex="1" />
-            <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField prefHeight="25.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="tfNome" prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextField fx:id="tfEmail" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfLogin" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="pfSenha" prefHeight="25.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="dpDataNascimento" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox alignment="CENTER" prefHeight="43.0" prefWidth="307.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Button mnemonicParsing="false" text="Salvar" />
-                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button mnemonicParsing="false" onAction="#btSalvarActionEvent" text="Salvar" />
+                  <Button mnemonicParsing="false" onAction="#btCancelarActionEvent" text="Cancelar" />
                </children>
             </HBox>
-            <Label contentDisplay="TOP" style="-fx-border-color: black;" text="Arraste a foto aqui" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label fx:id="lbFoto" contentDisplay="TOP" style="-fx-border-color: black;" text="Arraste a foto aqui" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="ivFoto" fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Label>
          </children>
       </GridPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="57.0" prefWidth="546.0" text="Cadastre-se" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="7.0">
+      <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="57.0" prefWidth="546.0" text="Cadastre-se" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="7.0">
          <font>
             <Font size="30.0" />
          </font>

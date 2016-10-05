@@ -6,6 +6,7 @@
 package br.com.PalleorrotasDePeterLund.control;
 
 import br.com.PalleorrotasDePeterLund.control.dao.UsuarioDAO;
+import br.com.PalleorrotasDePeterLund.model.Perfil;
 import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
@@ -18,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javax.imageio.ImageIO;
 
 /**
@@ -55,6 +57,7 @@ public class FacebookAuth {
             Usuario usuario = new UsuarioDAO().pegarPorFacebooId(facebook.getMe().getId());
             if (usuario == null) {
                 usuario = new Usuario();
+                usuario.setPerfil(Perfil.COMUM);
                 usuario.setFbId(facebook.getMe().getId());
             }
             usuario.setEmail(facebook.getMe().getEmail());
@@ -71,10 +74,17 @@ public class FacebookAuth {
             }
             if (usuario.getId() == null) {
                 new UsuarioDAO().cadastrar(usuario);
+                Platform.runLater(() -> {
+                    Message.mostrarMessage("Dados registrados", "Parabéns registrado com sucesso!", Message.Tipo.INFORMACAO);
+                });
             } else {
                 new UsuarioDAO().editar(usuario);
+                Platform.runLater(() -> {
+                    Message.mostrarMessage("Dados sicronizados", "Os dados da sua conta no \nfacebook foram sicronizados", Message.Tipo.INFORMACAO);
+                });
             }
             Sessao.usuario = usuario;
+
         } catch (FacebookException ex) {
             Logger.getLogger(FacebookAuth.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {

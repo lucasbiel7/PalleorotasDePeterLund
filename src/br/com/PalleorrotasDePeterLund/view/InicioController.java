@@ -7,7 +7,6 @@ package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
 import br.com.PalleorrotasDePeterLund.control.Sessao;
-import java.awt.event.MouseEvent;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +18,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
