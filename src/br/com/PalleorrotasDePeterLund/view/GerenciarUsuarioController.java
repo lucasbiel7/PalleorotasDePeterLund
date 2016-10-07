@@ -22,12 +22,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -64,6 +64,7 @@ public class GerenciarUsuarioController implements Initializable {
     private Label lbTitulo;
 
     private Usuario usuario;
+    private boolean edicao;
 
     /**
      * Initializes the controller class.
@@ -75,6 +76,7 @@ public class GerenciarUsuarioController implements Initializable {
             if (apPrincipal.getUserData() != null) {
                 usuario = (Usuario) apPrincipal.getUserData();
                 lbTitulo.setText("Editar perfil");
+                edicao = true;
             }
             carregarUsuario();
         });
@@ -85,17 +87,14 @@ public class GerenciarUsuarioController implements Initializable {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         });
-        lbFoto.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                List<File> files = event.getDragboard().getFiles();
-                if (!files.isEmpty()) {
-                    try {
-                        usuario.setFoto(Files.readAllBytes(files.get(0).toPath()));
-                        ivFoto.setImage(new Image(new ByteArrayInputStream(usuario.getFoto())));
-                    } catch (IOException ex) {
-                        Logger.getLogger(GerenciarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        lbFoto.setOnDragDropped((DragEvent event) -> {
+            List<File> files = event.getDragboard().getFiles();
+            if (!files.isEmpty()) {
+                try {
+                    usuario.setFoto(Files.readAllBytes(files.get(0).toPath()));
+                    ivFoto.setImage(new Image(new ByteArrayInputStream(usuario.getFoto())));
+                } catch (IOException ex) {
+                    Logger.getLogger(GerenciarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -116,18 +115,21 @@ public class GerenciarUsuarioController implements Initializable {
                 Message.mostrarMessage("Cadastro de usuário", "Parabéns " + usuario.getNome() + "!\nCadastro realizado com sucesso", Message.Tipo.INFORMACAO);
 
             });
+            btCancelarActionEvent(ae);
         } else {
             new UsuarioDAO().editar(usuario);
-            Platform.runLater(() -> {
-                Message.mostrarMessage("Editar perfil", "Olá " + usuario.getNome() + "!\nDados do perfil editado com sucesso!", Message.Tipo.INFORMACAO);
-            });
+            Message.mostrarMessage("Editar perfil", "Olá " + usuario.getNome() + "!\nDados do perfil editado com sucesso!", Message.Tipo.INFORMACAO);
         }
-        btCancelarActionEvent(ae);
+
     }
 
     @FXML
     private void btCancelarActionEvent(ActionEvent ae) {
-        ((Stage) apPrincipal.getScene().getWindow()).close();
+        if (edicao) {
+            ((ScrollPane) apPrincipal.getParent().getParent().getParent()).setContent(null);
+        } else {
+            ((Stage) apPrincipal.getScene().getWindow()).close();
+        }
     }
 
     private void carregarUsuario() {

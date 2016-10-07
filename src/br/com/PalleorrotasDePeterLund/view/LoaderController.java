@@ -6,10 +6,14 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.Sessao;
 import br.com.PalleorrotasDePeterLund.control.dao.UsuarioDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -43,9 +47,21 @@ public class LoaderController implements Initializable {
         }));
         loader.setCycleCount(4);
         loader.play();
+        Thread thread = new Thread(() -> {
+            List<Usuario> usuarios = new UsuarioDAO().pegarTodos();
+            //Login Automatico
+            Sessao.usuario = usuarios.get(0);
+            System.out.println("Conexão estabelecida");
+        });
+        thread.start();
         loader.setOnFinished((ActionEvent event) -> {
-            ((Stage) apPrincipal.getScene().getWindow()).close();
-            FxManager.carregarJanela(FxManager.carregarComponente("Inicio"), "Ínicio", FxManager.Tipo.MAXIMIZED).show();
+            try {
+                thread.join();
+                ((Stage) apPrincipal.getScene().getWindow()).close();
+                FxManager.carregarJanela(FxManager.carregarComponente("Inicio"), "Ínicio", FxManager.Tipo.MAXIMIZED).show();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LoaderController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 }

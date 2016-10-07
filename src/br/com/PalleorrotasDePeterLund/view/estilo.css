@@ -16,7 +16,7 @@
     -fx-text-fill:white;
 }
 
-.button-bar .button:hover,.split-menu-button .label:hover,.split-menu-button .arrow-button:hover,.menu-item:hover,.menu-item:hover .label{
+.button-bar .button:hover,.split-menu-button .label:hover,.split-menu-button .arrow-button:hover,.menu-item:hover,.menu-item:hover .label,.button:hover{
     -fx-background-color:-cor-contraste-secundaria;
     -fx-text-fill:black;
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarAplicativoController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarAplicativoController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -14,8 +14,9 @@
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="376.0" prefWidth="151.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <children>
             <Button mnemonicParsing="false" onAction="#btPerfilActionEvent" prefHeight="70.0" prefWidth="151.0" text="Perfil" />
+            <Button mnemonicParsing="false" onAction="#btGrutasActionEvent" prefHeight="70.0" prefWidth="151.0" text="Grutas" />
          </children>
       </VBox>
-      <ScrollPane fx:id="spContainer" layoutX="174.0" layoutY="14.0" prefHeight="381.0" prefWidth="419.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" layoutX="174.0" layoutY="14.0" prefHeight="381.0" prefWidth="419.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

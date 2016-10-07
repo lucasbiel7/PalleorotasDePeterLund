@@ -42,6 +42,7 @@ public class InicioController implements Initializable {
     @FXML
     private ImageView ivFoto;
 
+    private Stage stage;
     /**
      * Initializes the controller class.
      */
@@ -49,12 +50,14 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> {
             apPrincipal.getScene().getWindow().setOnCloseRequest((WindowEvent event) -> btSairActionEvent(null));
+            stage=(Stage) apPrincipal.getScene().getWindow();
         });
+        atualizarLogin();
     }
 
     @FXML
     private void btSairActionEvent(ActionEvent ae) {
-        ((Stage) apPrincipal.getScene().getWindow()).close();
+        stage.close();
         FxManager.carregarJanela(FxManager.carregarComponente("Sobre"), "Sobre o aplicativo", FxManager.Tipo.EXIT_ON_CLOSE, FxManager.Tipo.UNDECORATED).show();
     }
 
@@ -71,7 +74,9 @@ public class InicioController implements Initializable {
 
     @FXML
     private void lbUsuarioMouseEvent(MouseEvent mouseEvent) {
-        
+        if (Sessao.usuario != null) {
+            apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo",FxManager.carregarComponente("GerenciarAplicativo")));
+        }
     }
 
     private void atualizarLogin() {

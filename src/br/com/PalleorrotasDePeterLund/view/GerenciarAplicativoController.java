@@ -5,6 +5,8 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.Sessao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,20 +21,27 @@ import javafx.scene.layout.AnchorPane;
  * @author lucas
  */
 public class GerenciarAplicativoController implements Initializable {
+
     @FXML
     private AnchorPane apPrincipal;
     @FXML
     private ScrollPane spContainer;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    }
+
     @FXML
     private void btPerfilActionEvent(ActionEvent ae) {
-        
+        spContainer.setContent(FxManager.carregarComponente("GerenciarUsuario", Sessao.usuario));
+    }
+
+    @FXML
+    private void btGrutasActionEvent(ActionEvent ae) {
+        spContainer.setContent(FxManager.carregarComponente("GerenciarGruta", Sessao.usuario));
     }
 }

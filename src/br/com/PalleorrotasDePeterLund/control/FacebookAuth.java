@@ -60,17 +60,22 @@ public class FacebookAuth {
                 usuario.setPerfil(Perfil.COMUM);
                 usuario.setFbId(facebook.getMe().getId());
             }
-            usuario.setEmail(facebook.getMe().getEmail());
+
             usuario.setNome(facebook.getMe().getName());
-            if (usuario.getDataDeNascimento() != null) {
+            if (facebook.getMe().getBirthday() != null) {
                 usuario.setDataDeNascimento(new SimpleDateFormat(facebook.getMe().BIRTHDAY_DATE_FORMAT).parse(facebook.getMe().getBirthday()));
             }
+            if (facebook.getMe().getEmail() != null) {
+                usuario.setEmail(facebook.getMe().getEmail());
+            }
             if (facebook.getPictureURL() != null) {
-                BufferedImage bufferedImage = ImageIO.read(facebook.getPictureURL());
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(bufferedImage, "jpg", baos);
-                baos.flush();
-                usuario.setFoto(baos.toByteArray());
+                if (usuario.getFoto() == null) {
+                    BufferedImage bufferedImage = ImageIO.read(facebook.getPictureURL());
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(bufferedImage, "jpg", baos);
+                    baos.flush();
+                    usuario.setFoto(baos.toByteArray());
+                }
             }
             if (usuario.getId() == null) {
                 new UsuarioDAO().cadastrar(usuario);
@@ -84,7 +89,6 @@ public class FacebookAuth {
                 });
             }
             Sessao.usuario = usuario;
-
         } catch (FacebookException ex) {
             Logger.getLogger(FacebookAuth.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {

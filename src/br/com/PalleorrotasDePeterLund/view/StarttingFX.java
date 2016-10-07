@@ -18,7 +18,7 @@ public class StarttingFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FxManager.carregarJanela(FxManager.carregarComponente("Loader"), "Carregando", FxManager.Tipo.EXIT_ON_CLOSE, FxManager.Tipo.UNRESIZABLE).show();
+        FxManager.carregarJanela(FxManager.carregarComponente("Loader"), "Carregando", FxManager.Tipo.EXIT_ON_CLOSE, FxManager.Tipo.UNRESIZABLE,FxManager.Tipo.UNDECORATED).show();
     }
 
     /**

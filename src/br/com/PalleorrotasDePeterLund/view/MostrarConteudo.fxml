@@ -5,12 +5,12 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.MostrarConteudoController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.MostrarConteudoController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="52.0" text="Voltar" />
-      <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="61.0" prefHeight="332.0" prefWidth="572.0" />
+      <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#btVoltarActionEvent" prefHeight="39.0" prefWidth="52.0" text="Voltar" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="67.0" prefHeight="318.0" prefWidth="570.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="67.0" />
    </children>
 </AnchorPane>

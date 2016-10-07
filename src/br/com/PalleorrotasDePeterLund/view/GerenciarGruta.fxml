@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarGrutaController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <TableView layoutX="14.0" layoutY="251.0" prefHeight="135.0" prefWidth="569.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nome" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Accordion layoutX="15.0" layoutY="14.0" prefHeight="232.0" prefWidth="570.0" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
+        <panes>
+          <TitledPane animated="false" text="untitled 1" />
+          <TitledPane animated="false" text="untitled 2" />
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>
