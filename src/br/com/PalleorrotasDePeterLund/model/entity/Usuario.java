@@ -16,7 +16,6 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.GenericGenerator;
-import sun.misc.Perf;
 
 /**
  *

@@ -42,7 +42,7 @@ public class LoaderController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loader = new Timeline(new KeyFrame(Duration.seconds(1), (ActionEvent event) -> {
+        loader = new Timeline(new KeyFrame(Duration.seconds(2), (ActionEvent event) -> {
             lbCarregando.setText(lbCarregando.getText() + ".");
         }));
         loader.setCycleCount(4);

@@ -19,25 +19,16 @@ import org.hibernate.annotations.GenericGenerator;
  * @author lucas
  */
 @Entity
-@Table(name = "gruta")
-public class Gruta implements Serializable {
+@Table(name = "Imagem")
+public class Imagem implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(columnDefinition = "varchar(64)")
     private String id;
-    private String nome;
     @Lob
-    private String descricaoMapa;
-
-    public String getDescricaoMapa() {
-        return descricaoMapa;
-    }
-
-    public void setDescricaoMapa(String descricaoMapa) {
-        this.descricaoMapa = descricaoMapa;
-    }
+    private byte[] imagem;
 
     public String getId() {
         return id;
@@ -47,16 +38,11 @@ public class Gruta implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public byte[] getImagem() {
+        return imagem;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-        return getNome();
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 }
