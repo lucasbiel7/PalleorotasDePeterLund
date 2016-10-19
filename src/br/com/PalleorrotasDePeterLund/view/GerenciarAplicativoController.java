@@ -44,4 +44,5 @@ public class GerenciarAplicativoController implements Initializable {
     private void btGrutasActionEvent(ActionEvent ae) {
         spContainer.setContent(FxManager.carregarComponente("GerenciarGruta", Sessao.usuario));
     }
+
 }
