@@ -5,6 +5,7 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.FxManager;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaDAO;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaImagemDAO;
 import br.com.PalleorrotasDePeterLund.control.dao.ImagemDAO;
@@ -21,13 +22,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,6 +42,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -67,6 +74,10 @@ public class GerenciarGrutaController implements Initializable {
 
     private FileChooser fcImagem;
 
+    private ContextMenu cmMenu;
+
+    private MenuItem miAdicionarFotos;
+
     /**
      * Initializes the controller class.
      */
@@ -74,29 +85,25 @@ public class GerenciarGrutaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         fcImagem = new FileChooser();
         gruta = new Gruta();
+        cmMenu = new ContextMenu();
+        miAdicionarFotos = new MenuItem("Adicionar conjunto de imagens");
+        cmMenu.getItems().add(miAdicionarFotos);
         tvGruta.getItems().setAll(new GrutaDAO().pegarTodos());
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tvGruta.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Gruta>() {
-            @Override
-            public void changed(ObservableValue<? extends Gruta> observable, Gruta oldValue, Gruta newValue) {
-                if (newValue == null) {
-                    gruta = new Gruta();
-                    images.clear();
-                } else {
-                    gruta = newValue;
-                    //Carregando fotos da gruta
-
-                }
-                carregarGruta();
+        tvGruta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Gruta> observable, Gruta oldValue, Gruta newValue) -> {
+            if (newValue == null) {
+                gruta = new Gruta();
+                images.clear();
+            } else {
+                gruta = newValue;
+                images = new GrutaImagemDAO().pegarPorGruta(gruta).stream().map(GrutaImagem::getId).map(GrutaImagem.GrutaImagenID::getImagem).collect(Collectors.toList());
             }
+            carregarGruta();
         });
         images = new ArrayList<>();
         carregarFotos();
-        pgImagem.currentPageIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                carregarFotos();
-            }
+        pgImagem.currentPageIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            carregarFotos();
         });
     }
 
@@ -114,7 +121,7 @@ public class GerenciarGrutaController implements Initializable {
                 new ImagemDAO().cadastrar(image);
             }
             GrutaImagem grutaImagem = new GrutaImagem(new GrutaImagem.GrutaImagenID(gruta, image));
-            if (new GrutaImagemDAO().pegarPorId(grutaImagem) == null) {
+            if (new GrutaImagemDAO().pegarPorId(grutaImagem.getId()) == null) {
                 new GrutaImagemDAO().cadastrar(grutaImagem);
             }
         }
@@ -123,6 +130,8 @@ public class GerenciarGrutaController implements Initializable {
     @FXML
     private void btNovoActionEvent(ActionEvent ae) {
         gruta = new Gruta();
+        images.clear();
+        carregarGruta();
     }
 
     @FXML
@@ -199,12 +208,20 @@ public class GerenciarGrutaController implements Initializable {
     }
 
     private void adicionarFoto(Imagem image, int numberOfObject) {
-        ImageView imageView = new ImageView();
+        final ImageView imageView = new ImageView();
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setFitHeight(gpFoto.getWidth() / 4 - 40);
         imageView.setFitWidth(gpFoto.getWidth() / 4 - 40);
         imageView.setImage(new Image(new ByteArrayInputStream(image.getImagem())));
+        imageView.setOnMouseReleased((MouseEvent event) -> {
+            if (event.isPopupTrigger()) {
+                cmMenu.show(imageView, event.getSceneX(), event.getSceneY());
+                miAdicionarFotos.setOnAction((ActionEvent event1) -> {
+                    FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360",image), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
+                });
+            }
+        });
         gpFoto.add(imageView, numberOfObject % 4, numberOfObject / 4);
     }
 }

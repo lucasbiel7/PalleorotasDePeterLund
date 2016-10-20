@@ -45,4 +45,9 @@ public class GerenciarAplicativoController implements Initializable {
         spContainer.setContent(FxManager.carregarComponente("GerenciarGruta", Sessao.usuario));
     }
 
+    @FXML
+    private void btPeterLandActionEvent(ActionEvent ae) {
+        
+    }
+
 }

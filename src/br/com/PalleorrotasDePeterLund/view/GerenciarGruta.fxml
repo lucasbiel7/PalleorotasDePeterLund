@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="515.0" prefWidth="670.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarGrutaController">
@@ -58,7 +59,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="mainFxmlClass">
                      <children>
-                        <Button layoutX="524.0" layoutY="156.0" mnemonicParsing="false" onAction="#btAdicionarFotosActionEvent" text="Adicionar fotos" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0" />
+                        <HBox layoutX="429.3999938964844" layoutY="173.39999389648438" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#btRemoverFotosActionEvent" text="Remover foto" />
+                              <Button mnemonicParsing="false" onAction="#btAdicionarFotosActionEvent" text="Adicionar fotos" />
+                           </children>
+                        </HBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="18.6" layoutY="19.6" prefHeight="166.0" prefWidth="619.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                            <content>
                               <GridPane fx:id="gpFoto" hgap="5.0" vgap="5.0">
@@ -76,15 +82,18 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
-                        <Button layoutX="426.0" layoutY="156.0" mnemonicParsing="false" onAction="#btRemoverFotosActionEvent" text="Remover foto" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />
-                        <Pagination fx:id="pgImagem" layoutX="27.6" layoutY="175.0" pageCount="1" prefHeight="10.0" prefWidth="385.0" AnchorPane.bottomAnchor="-25.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="235.0" />
+                        <Pagination fx:id="pgImagem" layoutX="46.6" layoutY="175.0" pageCount="1" prefHeight="25.0" prefWidth="303.0" AnchorPane.bottomAnchor="-23.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="298.0" />
                      </children>
                   </AnchorPane>
               </content>
             </TitledPane>
         </panes>
       </Accordion>
-      <Button layoutX="603.0" layoutY="331.0" mnemonicParsing="false" onAction="#btSalvarActionEvent" text="Salvar" AnchorPane.bottomAnchor="159.0" AnchorPane.rightAnchor="15.0" />
-      <Button layoutX="551.0" layoutY="331.0" mnemonicParsing="false" onAction="#btNovoActionEvent" text="Nova" AnchorPane.bottomAnchor="159.0" AnchorPane.rightAnchor="75.0" />
+      <HBox layoutX="551.0" layoutY="331.0" prefHeight="25.0" prefWidth="102.0" spacing="6.0" AnchorPane.bottomAnchor="159.0" AnchorPane.rightAnchor="17.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#btNovoActionEvent" text="Nova" />
+            <Button mnemonicParsing="false" onAction="#btSalvarActionEvent" text="Salvar" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

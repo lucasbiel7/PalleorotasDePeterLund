@@ -6,9 +6,8 @@
 package br.com.PalleorrotasDePeterLund.control.dao;
 
 import br.com.PalleorrotasDePeterLund.model.GenericaDAO;
-import br.com.PalleorrotasDePeterLund.model.entity.Gruta;
-import br.com.PalleorrotasDePeterLund.model.entity.GrutaImagem;
 import br.com.PalleorrotasDePeterLund.model.entity.Imagem;
+import br.com.PalleorrotasDePeterLund.model.entity.Imagem360;
 import java.util.List;
 import org.hibernate.criterion.Restrictions;
 
@@ -16,10 +15,10 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author lucas
  */
-public class GrutaImagemDAO extends GenericaDAO<GrutaImagem> {
+public class Imagem360DAO extends GenericaDAO<Imagem360> {
 
-    public List<GrutaImagem> pegarPorGruta(Gruta gruta) {
-        entitys = criteria.add(Restrictions.eq("id.gruta", gruta)).list();
+    public List<Imagem360> pegarPorPrincipal(Imagem imagem) {
+        entitys=criteria.add(Restrictions.eq("id.principal", imagem)).list();
         closeSession();
         return entitys;
     }
