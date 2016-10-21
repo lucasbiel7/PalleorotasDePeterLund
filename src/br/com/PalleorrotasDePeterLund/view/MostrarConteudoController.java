@@ -44,6 +44,7 @@ public class MostrarConteudoController implements Initializable {
     @FXML
     private void btVoltarActionEvent(ActionEvent ae) {
         if (anterior == null) {
+            System.gc();
             apPrincipal.getScene().setRoot(FxManager.carregarComponente("Inicio"));
         }
     }

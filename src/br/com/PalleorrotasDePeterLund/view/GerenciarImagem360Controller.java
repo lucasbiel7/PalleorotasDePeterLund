@@ -8,6 +8,7 @@ package br.com.PalleorrotasDePeterLund.view;
 import br.com.PalleorrotasDePeterLund.control.FxManager;
 import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.dao.Imagem360DAO;
+import br.com.PalleorrotasDePeterLund.control.dao.ImagemDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Imagem;
 import br.com.PalleorrotasDePeterLund.model.entity.Imagem360;
 import java.io.ByteArrayInputStream;
@@ -50,6 +51,8 @@ public class GerenciarImagem360Controller implements Initializable {
     @FXML
     private ScrollPane spPreview;
 
+    @FXML
+    private Button btSalvar;
     private Imagem imagem;
 
     private List<Imagem> imagens;
@@ -72,7 +75,6 @@ public class GerenciarImagem360Controller implements Initializable {
         });
         fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagem", "*.jpg", "*.png", "*.gif", "*.JPG", "*.PNG"));
-
     }
 
     @FXML
@@ -120,6 +122,43 @@ public class GerenciarImagem360Controller implements Initializable {
 
     }
 
+    @FXML
+    private void btSalvarActionEvent(ActionEvent ae) {
+        Thread salvarFotos = new Thread(() -> {
+            int pos = 0;
+            for (Imagem imagem : imagens) {
+                if (imagem.getId() == null) {
+                    new ImagemDAO().cadastrar(imagem);
+                }
+                Imagem360 imagem360 = new Imagem360(new Imagem360.Imagem360Id(this.imagem, imagem), pos);
+                if (!this.imagem.equals(imagem)) {
+                    if (new Imagem360DAO().pegarPorId(imagem360.getId()) == null) {
+                        new Imagem360DAO().cadastrar(imagem360);
+                    } else {
+                        new Imagem360DAO().editar(imagem360);
+                    }
+                }
+                pos++;
+            }
+        });
+        salvarFotos.start();
+        btSalvar.setText("Salvando alterações");
+        btSalvar.setDisable(true);
+        new Thread(() -> {
+            try {
+                salvarFotos.join();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GerenciarImagem360Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Platform.runLater(() -> {
+                btSalvar.setText("Salvar");
+                btSalvar.setDisable(false);
+                Message.mostrarMessage("Imagens salvas", "Todas as imagens foram salvas com sucesso!", Message.Tipo.INFORMACAO);
+            });
+        }).start();
+
+    }
+
     private void carregarFotos() {
         gpFotos.getChildren().clear();
         int n = 0;
@@ -141,12 +180,15 @@ public class GerenciarImagem360Controller implements Initializable {
                 if (imagem.equals(this.imagem)) {
                     Message.mostrarMessage("Remover foto principal", "Não é permitido remover a foto principal", Message.Tipo.ERRO);
                 } else {
+                    if (imagem.getId() != null) {
+                        new ImagemDAO().excluir(imagem);
+                    }
                     imagens.remove(imagem);
                     carregarFotos();
                 }
             }
         });
         imageView.setImage(new Image(new ByteArrayInputStream(imagem.getImagem())));
-        gpFotos.add(imageView, number % 6, number / 6);
+        gpFotos.add(imageView, number % 15, number / 15);
     }
 }

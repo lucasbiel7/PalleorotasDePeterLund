@@ -57,10 +57,10 @@ public class ImageView360Controller implements Initializable {
             ivPrincipal.setFitWidth(apPrincipal.getWidth());
             ivPrincipal.setFitHeight(apPrincipal.getHeight());
         });
-        ivPrincipal.setOnDragDetected((MouseEvent event) -> {
+        ivPrincipal.setOnMouseEntered((MouseEvent event) -> {
             apPrincipal.getScene().setCursor(Cursor.CROSSHAIR);
         });
-        ivPrincipal.setOnDragDone((DragEvent event) -> {
+        ivPrincipal.setOnMouseExited((MouseEvent event) -> {
             apPrincipal.getScene().setCursor(Cursor.DEFAULT);
         });
         ivPrincipal.setOnMouseDragged((MouseEvent event) -> {

@@ -34,6 +34,7 @@
          </children>
       </HBox>
       <Label layoutX="22.0" layoutY="261.0" text="Preview" AnchorPane.topAnchor="261.0" />
-      <ScrollPane fx:id="spPreview" fitToHeight="true" fitToWidth="true" layoutX="22.0" layoutY="296.0" prefHeight="304.0" prefWidth="646.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="291.0" />
+      <ScrollPane fx:id="spPreview" fitToHeight="true" fitToWidth="true" layoutX="22.0" layoutY="296.0" prefHeight="304.0" prefWidth="646.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="291.0" />
+      <Button fx:id="btSalvar" layoutX="613.0" layoutY="584.0" mnemonicParsing="false" onAction="#btSalvarActionEvent" text="Salvar" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>
