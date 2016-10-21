@@ -6,6 +6,7 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.ImageManipulation;
 import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.dao.Imagem360DAO;
 import br.com.PalleorrotasDePeterLund.control.dao.ImagemDAO;
@@ -92,7 +93,8 @@ public class GerenciarImagem360Controller implements Initializable {
                 for (File file : files) {
                     try {
                         final Imagem imagem = new Imagem();
-                        imagem.setImagem(Files.readAllBytes(file.toPath()));
+                        String extensao = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+                        imagem.setImagem(ImageManipulation.imageReductor(Files.readAllBytes(file.toPath()), extensao));
                         final int pos = imagens.size();
                         imagens.add(imagem);
                         Platform.runLater(() -> {

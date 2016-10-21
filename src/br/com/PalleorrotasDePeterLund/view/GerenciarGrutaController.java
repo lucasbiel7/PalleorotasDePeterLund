@@ -6,6 +6,8 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.ImageManipulation;
+import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaDAO;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaImagemDAO;
 import br.com.PalleorrotasDePeterLund.control.dao.ImagemDAO;
@@ -24,11 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -64,7 +63,8 @@ public class GerenciarGrutaController implements Initializable {
     private TableView<Gruta> tvGruta;
     @FXML
     private TableColumn<Gruta, String> tcNome;
-
+    @FXML
+    private Button btRemoverFoto;
     @FXML
     private GridPane gpFoto;
     @FXML
@@ -77,6 +77,7 @@ public class GerenciarGrutaController implements Initializable {
     private ContextMenu cmMenu;
 
     private MenuItem miAdicionarFotos;
+    private boolean removerFoto;
 
     /**
      * Initializes the controller class.
@@ -143,7 +144,9 @@ public class GerenciarGrutaController implements Initializable {
                     if (arquivo.getName().matches(".*\\.(jpg|png|gif|JPG|PNG|GIF)")) {
                         Imagem imagem = new Imagem();
                         try {
-                            imagem.setImagem(Files.readAllBytes(arquivo.toPath()));
+                            String extensao = arquivo.getName().substring(arquivo.getName().lastIndexOf(".")+1);
+                            System.out.println(extensao);
+                            imagem.setImagem(ImageManipulation.imageReductor(Files.readAllBytes(arquivo.toPath()), extensao));
                         } catch (IOException ex) {
                             Logger.getLogger(GerenciarGrutaController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -179,6 +182,9 @@ public class GerenciarGrutaController implements Initializable {
 
     @FXML
     private void btRemoverFotosActionEvent(ActionEvent ae) {
+        removerFoto = !removerFoto;
+        btRemoverFoto.setText(removerFoto ? "Clique nas fotos para remover\n"
+                + "Ao concluir clique aqui" : "Remover foto");
 
     }
 
@@ -218,8 +224,15 @@ public class GerenciarGrutaController implements Initializable {
             if (event.isPopupTrigger()) {
                 cmMenu.show(imageView, event.getSceneX(), event.getSceneY());
                 miAdicionarFotos.setOnAction((ActionEvent event1) -> {
-                    FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360",image), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
+                    FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360", image), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
                 });
+            } else if (removerFoto) {
+                if (image.getId() != null) {
+                    new ImagemDAO().excluir(image);
+                }
+                images.remove(image);
+                Message.mostrarMessage("Imagem removida", "A imagem foi excluida com sucesso!", Message.Tipo.INFORMACAO);
+                carregarFotos();
             }
         });
         gpFoto.add(imageView, numberOfObject % 4, numberOfObject / 4);

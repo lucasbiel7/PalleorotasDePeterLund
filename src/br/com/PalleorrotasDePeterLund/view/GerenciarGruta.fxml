@@ -61,7 +61,7 @@
                      <children>
                         <HBox layoutX="429.3999938964844" layoutY="173.39999389648438" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#btRemoverFotosActionEvent" text="Remover foto" />
+                              <Button fx:id="btRemoverFoto" mnemonicParsing="false" onAction="#btRemoverFotosActionEvent" text="Remover foto" />
                               <Button mnemonicParsing="false" onAction="#btAdicionarFotosActionEvent" text="Adicionar fotos" />
                            </children>
                         </HBox>
