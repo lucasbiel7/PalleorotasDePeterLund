@@ -6,12 +6,15 @@
 package br.com.PalleorrotasDePeterLund.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,6 +33,12 @@ public class Imagem implements Serializable {
     private String id;
     @Lob
     private byte[] imagem;
+    @OneToMany(mappedBy = "id.imagem", cascade = CascadeType.REMOVE)
+    private List<GrutaImagem> grutaImagens;
+    @OneToMany(mappedBy = "id.principal", cascade = CascadeType.REMOVE)
+    private List<Imagem360> imagensPrincipais360;
+    @OneToMany(mappedBy = "id.composicao", cascade = CascadeType.REMOVE)
+    private List<Imagem360> imagensComposicao360;
 
     public String getId() {
         return id;
@@ -71,5 +80,5 @@ public class Imagem implements Serializable {
         }
         return true;
     }
-    
+
 }

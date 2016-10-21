@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author lucas
  */
 @Entity
-@Table(name = "imagem")
+@Table(name = "imagem_360")
 public class Imagem360 implements Serializable {
 
     @Embeddable
@@ -88,6 +88,14 @@ public class Imagem360 implements Serializable {
     private Imagem360Id id;
     private int pos;
 
+    public Imagem360() {
+    }
+
+    public Imagem360(Imagem360Id id, int pos) {
+        this.id = id;
+        this.pos = pos;
+    }
+    
     public Imagem360Id getId() {
         return id;
     }
