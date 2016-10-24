@@ -34,6 +34,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -69,6 +70,8 @@ public class GerenciarGrutaController implements Initializable {
     private GridPane gpFoto;
     @FXML
     private Pagination pgImagem;
+    @FXML
+    private SplitMenuButton smb;
     private Gruta gruta;
     private List<Imagem> images;
 
@@ -126,6 +129,11 @@ public class GerenciarGrutaController implements Initializable {
                 new GrutaImagemDAO().cadastrar(grutaImagem);
             }
         }
+        Message.mostrarMessage("Salvo com sucesso", "Dados da gruta foram salvos com sucesso", Message.Tipo.INFORMACAO);
+        gruta = new Gruta();
+        images.clear();
+        carregarGruta();
+        tvGruta.getItems().setAll(new GrutaDAO().pegarTodos());
     }
 
     @FXML
@@ -144,7 +152,7 @@ public class GerenciarGrutaController implements Initializable {
                     if (arquivo.getName().matches(".*\\.(jpg|png|gif|JPG|PNG|GIF)")) {
                         Imagem imagem = new Imagem();
                         try {
-                            String extensao = arquivo.getName().substring(arquivo.getName().lastIndexOf(".")+1);
+                            String extensao = arquivo.getName().substring(arquivo.getName().lastIndexOf(".") + 1);
                             System.out.println(extensao);
                             imagem.setImagem(ImageManipulation.imageReductor(Files.readAllBytes(arquivo.toPath()), extensao));
                         } catch (IOException ex) {
@@ -237,4 +245,5 @@ public class GerenciarGrutaController implements Initializable {
         });
         gpFoto.add(imageView, numberOfObject % 4, numberOfObject / 4);
     }
+
 }

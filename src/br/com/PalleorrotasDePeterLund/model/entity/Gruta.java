@@ -31,6 +31,16 @@ public class Gruta implements Serializable {
     private String nome;
     @Lob
     private String descricaoMapa;
+    @Lob
+    private String conteudo;
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
 
     public String getDescricaoMapa() {
         return descricaoMapa;
@@ -81,7 +91,6 @@ public class Gruta implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return getNome();

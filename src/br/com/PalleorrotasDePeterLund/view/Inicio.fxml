@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -52,13 +51,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <SplitMenuButton alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Grutas" wrapText="true">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Lapinha" />
-                <MenuItem mnemonicParsing="false" text="Rei do mato" />
-                  <MenuItem mnemonicParsing="false" text="Maquiné" />
-              </items>
-            </SplitMenuButton>
+            <SplitMenuButton fx:id="smbGrutas" alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Grutas" wrapText="true" />
             <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Geologia" wrapText="true">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
