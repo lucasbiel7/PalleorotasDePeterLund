@@ -5,14 +5,20 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.FxManager;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaImagemDAO;
+import br.com.PalleorrotasDePeterLund.control.dao.Imagem360DAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Gruta;
 import br.com.PalleorrotasDePeterLund.model.entity.GrutaImagem;
+import br.com.PalleorrotasDePeterLund.model.entity.Imagem;
+import br.com.PalleorrotasDePeterLund.model.entity.Imagem360;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.event.Event;
@@ -22,9 +28,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import org.controlsfx.control.PopOver;
 
 /**
  * FXML Controller class
@@ -51,6 +59,7 @@ public class VisualizarGrutaController implements Initializable {
 
     private final int LINHA = 2;
     private final int COLUNA = 3;
+    private PopOver popOver;
 
     /**
      * Initializes the controller class.
@@ -66,6 +75,7 @@ public class VisualizarGrutaController implements Initializable {
             limparImageView();
             carregarFotos();
         });
+        popOver = new PopOver();
     }
 
     @FXML
@@ -106,10 +116,29 @@ public class VisualizarGrutaController implements Initializable {
         int inicio = pgFotos.getCurrentPageIndex() * COLUNA * LINHA;
         int fim = inicio + (COLUNA * LINHA);
         int imvcount = 0;
-        for (GrutaImagem imagen : imagens.subList(inicio, fim > imagens.size() ? imagens.size() : fim)) {
+        for (GrutaImagem grutaImagem : imagens.subList(inicio, fim > imagens.size() ? imagens.size() : fim)) {
             ImageView imageView = imageViews.get(imvcount);
-            imageView.setImage(new Image(new ByteArrayInputStream(imagen.getId().getImagem().getImagem())));
+            imageView.setImage(new Image(new ByteArrayInputStream(grutaImagem.getId().getImagem().getImagem())));
             imageView.setVisible(true);
+            final List<Imagem> imagens = new ArrayList<>();
+            Thread carregandoImagem = new Thread(() -> {
+                imagens.add(grutaImagem.getId().getImagem());
+                for (Imagem360 imagem360 : new Imagem360DAO().pegarPorPrincipal(grutaImagem.getId().getImagem())) {
+                    imagens.add(imagem360.getId().getComposicao());
+                }
+            });
+            carregandoImagem.start();
+            imageView.setOnMouseReleased((MouseEvent event) -> {
+                try {
+                    carregandoImagem.join();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VisualizarGrutaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                AnchorPane anchorPane=(AnchorPane) FxManager.carregarComponente("ImageView360",imagens);
+                anchorPane.setPrefSize(600, 400);
+                popOver.setContentNode(anchorPane);
+                popOver.show(apPrincipal.getScene().getWindow());
+            });
             imvcount++;
         }
     }
