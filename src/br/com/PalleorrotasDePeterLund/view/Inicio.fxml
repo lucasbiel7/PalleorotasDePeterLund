@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -72,5 +73,6 @@
             <Hyperlink fx:id="hlLogin" onAction="#btLoginActionEvent" text="Login" />
          </children>
       </HBox>
+      <ScrollPane fx:id="spConteudo" fitToHeight="true" fitToWidth="true" layoutX="21.0" layoutY="116.0" prefHeight="248.0" prefWidth="732.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="116.0" />
    </children>
 </AnchorPane>

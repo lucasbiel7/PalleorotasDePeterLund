@@ -37,4 +37,7 @@
 .painel-transparente{
     -fx-background-color: transparent;
 }
+.borda{
+    -fx-border-color: -cor-secundaria;
+}
 

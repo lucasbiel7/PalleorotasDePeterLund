@@ -31,7 +31,26 @@ public class PeterLund implements Serializable {
     private String conteudo;
     @Lob
     private byte[] foto;
+    private String descricaoFoto;
 
+    public String getDescricaoFoto() {
+        return descricaoFoto;
+    }
+
+    public void setDescricaoFoto(String descricaoFoto) {
+        this.descricaoFoto = descricaoFoto;
+    }
+    
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    
     public String getId() {
         return id;
     }

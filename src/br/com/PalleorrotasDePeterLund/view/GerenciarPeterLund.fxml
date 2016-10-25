@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="581.0" prefWidth="653.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GerenciarPeterLundController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <GridPane hgap="5.0" layoutX="31.0" layoutY="25.0" prefHeight="515.0" prefWidth="485.0" vgap="5.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="457.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="78.0" minHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="365.0" minHeight="10.0" prefHeight="246.0" valignment="TOP" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="231.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="45.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="36.0" valignment="TOP" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Titulo da pagina" />
+            <Label text="Conteudo" GridPane.rowIndex="1" />
+            <Label text="Foto" GridPane.rowIndex="2" />
+            <TextField fx:id="tfTitulo" prefHeight="25.0" prefWidth="302.0" GridPane.columnIndex="1" />
+            <TextArea fx:id="taConteudo" prefHeight="274.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#btSalvarActionEvent" text="Salvar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label contentDisplay="TOP" onDragDropped="#ivFotoDragEventDropped" onDragOver="#ivFotoDragEventOver" styleClass="borda" text="Arraste a imagem aqui" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fx:id="ivFoto" fitHeight="153.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Label>
+            <Label text="Descrição foto" GridPane.rowIndex="3" />
+            <TextField fx:id="tfDescricaoFoto" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

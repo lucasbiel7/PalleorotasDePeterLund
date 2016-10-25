@@ -14,12 +14,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -48,6 +48,8 @@ public class InicioController implements Initializable {
     private ImageView ivFoto;
     @FXML
     private SplitMenuButton smbGrutas;
+    @FXML
+    private ScrollPane spConteudo;
 
     private Stage stage;
 
@@ -59,11 +61,8 @@ public class InicioController implements Initializable {
         atualizarLogin();
         for (Gruta gruta : new GrutaDAO().pegarTodos()) {
             MenuItem menuItem = new MenuItem(gruta.getNome());
-            menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("VisualizarGruta", gruta)));
-                }
+            menuItem.setOnAction((ActionEvent event) -> {
+                apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("VisualizarGruta", gruta)));
             });
             smbGrutas.getItems().add(menuItem);
         }
@@ -71,6 +70,8 @@ public class InicioController implements Initializable {
             apPrincipal.getScene().getWindow().setOnCloseRequest((WindowEvent event) -> btSairActionEvent(null));
             stage = (Stage) apPrincipal.getScene().getWindow();
         });
+        spConteudo.setContent(FxManager.carregarComponente("PeterLund"));
+
     }
 
     @FXML

@@ -5,24 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.PeterLundController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="352.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.PeterLundController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="90.0" prefWidth="571.0" textAlignment="CENTER">
+      <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="90.0" prefWidth="571.0" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
       <StackPane fx:id="spOverLay" layoutX="388.0" layoutY="104.0" prefHeight="208.0" prefWidth="198.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="104.0" />
-      <TextFlow layoutX="15.0" layoutY="104.0" prefHeight="291.0" prefWidth="366.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="104.0">
-         <children>
-            <Text fx:id="tConteudo" strokeType="OUTSIDE" strokeWidth="0.0" />
-         </children>
-      </TextFlow>
+      <WebView fx:id="wvTexto" layoutX="15.0" layoutY="108.0" prefHeight="200.0" prefWidth="355.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="108.0" />
    </children>
 </AnchorPane>
