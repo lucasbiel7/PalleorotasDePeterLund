@@ -45,7 +45,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import org.controlsfx.control.InfoOverlay;
 
 /**
  * FXML Controller class
@@ -73,13 +75,14 @@ public class GerenciarGrutaController implements Initializable {
     @FXML
     private SplitMenuButton smb;
     private Gruta gruta;
-    private List<Imagem> images;
+    private List<GrutaImagem> images;
 
     private FileChooser fcImagem;
 
     private ContextMenu cmMenu;
 
     private MenuItem miAdicionarFotos;
+    private MenuItem miAdicionarLegenda;
     private boolean removerFoto;
 
     /**
@@ -91,7 +94,8 @@ public class GerenciarGrutaController implements Initializable {
         gruta = new Gruta();
         cmMenu = new ContextMenu();
         miAdicionarFotos = new MenuItem("Adicionar conjunto de imagens");
-        cmMenu.getItems().add(miAdicionarFotos);
+        miAdicionarLegenda = new MenuItem("Adicionar legenda");
+        cmMenu.getItems().addAll(miAdicionarFotos, miAdicionarLegenda);
         tvGruta.getItems().setAll(new GrutaDAO().pegarTodos());
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tvGruta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Gruta> observable, Gruta oldValue, Gruta newValue) -> {
@@ -100,7 +104,7 @@ public class GerenciarGrutaController implements Initializable {
                 images.clear();
             } else {
                 gruta = newValue;
-                images = new GrutaImagemDAO().pegarPorGruta(gruta).stream().map(GrutaImagem::getId).map(GrutaImagem.GrutaImagenID::getImagem).collect(Collectors.toList());
+                images = new GrutaImagemDAO().pegarPorGruta(gruta);
             }
             carregarGruta();
         });
@@ -120,13 +124,14 @@ public class GerenciarGrutaController implements Initializable {
         } else {
             new GrutaDAO().editar(gruta);
         }
-        for (Imagem image : images) {
-            if (image.getId() == null) {
-                new ImagemDAO().cadastrar(image);
+        for (GrutaImagem image : images) {
+            if (image.getId().getImagem().getId() == null) {
+                new ImagemDAO().cadastrar(image.getId().getImagem());
             }
-            GrutaImagem grutaImagem = new GrutaImagem(new GrutaImagem.GrutaImagenID(gruta, image));
-            if (new GrutaImagemDAO().pegarPorId(grutaImagem.getId()) == null) {
-                new GrutaImagemDAO().cadastrar(grutaImagem);
+            if (new GrutaImagemDAO().pegarPorId(image.getId()) == null) {
+                new GrutaImagemDAO().cadastrar(image);
+            } else {
+                new GrutaImagemDAO().editar(image);
             }
         }
         Message.mostrarMessage("Salvo com sucesso", "Dados da gruta foram salvos com sucesso", Message.Tipo.INFORMACAO);
@@ -158,11 +163,12 @@ public class GerenciarGrutaController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(GerenciarGrutaController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        final int size = images.size();
-                        images.add(imagem);
+                        final int size = images.size();;
+                        GrutaImagem grutaImagem = new GrutaImagem(new GrutaImagem.GrutaImagenID(gruta, imagem));
+                        images.add(grutaImagem);
                         Platform.runLater(() -> {
                             if (images.size() < 8) {
-                                adicionarFoto(imagem, size);
+                                adicionarFoto(grutaImagem, size);
                             }
                         });
                     }
@@ -215,35 +221,56 @@ public class GerenciarGrutaController implements Initializable {
         }
         int numberOfObject = 0;
         int inicio = 8 * pgImagem.getCurrentPageIndex();
-        for (Imagem image : images.subList(inicio, inicio + 8 > images.size() ? images.size() : inicio + 8)) {
+        for (GrutaImagem image : images.subList(inicio, inicio + 8 > images.size() ? images.size() : inicio + 8)) {
             adicionarFoto(image, numberOfObject);
             numberOfObject++;
         }
     }
 
-    private void adicionarFoto(Imagem image, int numberOfObject) {
+    private void adicionarFoto(GrutaImagem grutaImage, int numberOfObject) {
         final ImageView imageView = new ImageView();
-        imageView.setPreserveRatio(true);
+        final InfoOverlay infoOverlay = new InfoOverlay(imageView, grutaImage.getLegenda());
+        final StackPane pane=new StackPane(infoOverlay);
+//        imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setFitHeight(gpFoto.getWidth() / 4 - 40);
         imageView.setFitWidth(gpFoto.getWidth() / 4 - 40);
-        imageView.setImage(new Image(new ByteArrayInputStream(image.getImagem())));
+        imageView.setImage(new Image(new ByteArrayInputStream(grutaImage.getId().getImagem().getImagem())));
         imageView.setOnMouseReleased((MouseEvent event) -> {
             if (event.isPopupTrigger()) {
                 cmMenu.show(imageView, event.getSceneX(), event.getSceneY());
                 miAdicionarFotos.setOnAction((ActionEvent event1) -> {
-                    FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360", image), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
+                    if (grutaImage.getId() != null) {
+                        FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360", grutaImage), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
+                    } else {
+                        Message.mostrarMessage("Mensagem na memoria", "Para adicionar imagens a imagem atual e necessário salvar as alterações.", Message.Tipo.ERRO);
+                    }
+                });
+                miAdicionarLegenda.setOnAction((ActionEvent event1) -> {
+                    GrutaImagem grutaImagem = new GrutaImagemDAO().pegarPorId(grutaImage.getId());
+                    if (grutaImagem != null) {
+                        grutaImagem.setLegenda(Message.caixaDeTexto("Legenda da foto", "Digite uma legenda para a foto"));
+                        new GrutaImagemDAO().editar(grutaImagem);
+                    } else {
+                        Message.mostrarMessage("Salve os dados", "Para realizar essa função e necessário salvar as alterações.", Message.Tipo.ERRO);
+                    }
+                    carregarFotos();
                 });
             } else if (removerFoto) {
-                if (image.getId() != null) {
-                    new ImagemDAO().excluir(image);
+                if (grutaImage.getId().getImagem().getId() != null) {
+                    new ImagemDAO().excluir(grutaImage.getId().getImagem());
                 }
-                images.remove(image);
+                images.remove(grutaImage);
                 Message.mostrarMessage("Imagem removida", "A imagem foi excluida com sucesso!", Message.Tipo.INFORMACAO);
                 carregarFotos();
             }
         });
-        gpFoto.add(imageView, numberOfObject % 4, numberOfObject / 4);
+        if (grutaImage.getLegenda() == null || grutaImage.getLegenda().isEmpty()) {
+            gpFoto.add(imageView, numberOfObject % 4, numberOfObject / 4);
+        } else {
+            gpFoto.add(pane, numberOfObject % 4, numberOfObject / 4);
+        }
+
     }
 
 }

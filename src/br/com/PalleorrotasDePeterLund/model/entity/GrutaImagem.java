@@ -85,7 +85,16 @@ public class GrutaImagem implements Serializable {
     }
     @EmbeddedId
     private GrutaImagenID id;
+    private String legenda;
 
+    public String getLegenda() {
+        return legenda;
+    }
+
+    public void setLegenda(String legenda) {
+        this.legenda = legenda;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -108,8 +117,6 @@ public class GrutaImagem implements Serializable {
     public GrutaImagem() {
     }
 
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -127,7 +134,5 @@ public class GrutaImagem implements Serializable {
         }
         return true;
     }
-    
-    
-    
+
 }

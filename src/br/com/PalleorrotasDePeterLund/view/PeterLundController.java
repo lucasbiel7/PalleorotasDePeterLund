@@ -17,9 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
 import javafx.scene.web.WebView;
 import org.controlsfx.control.InfoOverlay;
 
@@ -38,6 +35,7 @@ public class PeterLundController implements Initializable {
     private StackPane spOverLay;
     @FXML
     private WebView wvTexto;
+    
     private InfoOverlay ioFoto;
 
     /**

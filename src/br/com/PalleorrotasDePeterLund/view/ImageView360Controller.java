@@ -62,19 +62,21 @@ public class ImageView360Controller implements Initializable {
             apPrincipal.getScene().setCursor(Cursor.DEFAULT);
         });
         ivPrincipal.setOnMouseDragged((MouseEvent event) -> {
-            if (event.getX() > lastX) {
-                ++atualImagem;
-            } else {
-                --atualImagem;
+            if (event.getX() > lastX + 5 || event.getX() < lastX - 5) {
+                if (event.getX() > lastX) {
+                    ++atualImagem;
+                } else {
+                    --atualImagem;
+                }
+                if (atualImagem >= imagens.size()) {
+                    atualImagem = imagens.size() - 1;
+                }
+                if (atualImagem < 0) {
+                    atualImagem = 0;
+                }
+                carregarImagem(atualImagem);
+                lastX = (int) event.getX();
             }
-            if (atualImagem >= imagens.size()) {
-                atualImagem = imagens.size() - 1;
-            }
-            if (atualImagem < 0) {
-                atualImagem = 0;
-            }
-            carregarImagem(atualImagem);
-            lastX = (int) event.getX();
             event.consume();
         });
     }

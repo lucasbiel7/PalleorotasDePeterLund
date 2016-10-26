@@ -15,7 +15,7 @@
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="197.0" prefWidth="657.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="14.0">
+      <ScrollPane layoutX="14.0" layoutY="10.0" prefHeight="201.0" prefWidth="657.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="10.0">
          <content>
             <GridPane fx:id="gpFotos" hgap="10.0" vgap="10.0">
               <columnConstraints>

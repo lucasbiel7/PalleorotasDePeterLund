@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,6 +52,8 @@ public class GerenciarImagem360Controller implements Initializable {
     private Button btAdicionarFotos;
     @FXML
     private ScrollPane spPreview;
+    @FXML
+    private TextField tfLegenda;
 
     @FXML
     private Button btSalvar;

@@ -7,6 +7,7 @@ package br.com.PalleorrotasDePeterLund.control;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -14,6 +15,13 @@ import org.controlsfx.control.Notifications;
  * @author lucas
  */
 public class Message {
+
+    public static String caixaDeTexto(String titulo, String msg) {
+        TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.setTitle(titulo);
+        textInputDialog.setContentText(msg);
+        return textInputDialog.showAndWait().orElse("");
+    }
 
     public enum Tipo {
         INFORMACAO, ERRO, ALERTA,

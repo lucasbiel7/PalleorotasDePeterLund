@@ -5,6 +5,7 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.dao.PeterLundDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.PeterLund;
 import java.io.ByteArrayInputStream;
@@ -74,6 +75,7 @@ public class GerenciarPeterLundController implements Initializable {
         peterLund.setConteudo(taConteudo.getText());
         peterLund.setDescricaoFoto(tfDescricaoFoto.getText());
         new PeterLundDAO().editar(peterLund);
+        Message.mostrarMessage("Peter lund atualizado", "Todas modificações foram salvas com sucesso!", Message.Tipo.INFORMACAO);
     }
 
     @FXML

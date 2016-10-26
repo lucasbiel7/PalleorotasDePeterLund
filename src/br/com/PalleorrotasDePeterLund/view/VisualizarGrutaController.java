@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.PopOver;
 
 /**
@@ -56,6 +59,7 @@ public class VisualizarGrutaController implements Initializable {
     private Gruta gruta;
     private List<GrutaImagem> imagens;
     private List<ImageView> imageViews;
+    private List<InfoOverlay> infoOverlays;
 
     private final int LINHA = 2;
     private final int COLUNA = 3;
@@ -92,15 +96,28 @@ public class VisualizarGrutaController implements Initializable {
     private void carregarImageViews() {
         gpFotos.getChildren().clear();
         imageViews = new ArrayList<>();
+        infoOverlays = new ArrayList<>();
         for (int i = 0; i < LINHA; i++) {
             for (int j = 0; j < COLUNA; j++) {
-                ImageView imageView = new ImageView();
+                final ImageView imageView = new ImageView();
+                final InfoOverlay infoOverlay = new InfoOverlay(imageView, "");
+                infoOverlay.textProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        if (newValue==null || newValue.isEmpty()) {
+                            infoOverlay.setShowOnHover(false);
+                        } else {
+                            infoOverlay.setShowOnHover(true);
+                        }
+                    }
+                });
                 imageView.setFitWidth(300);
                 imageView.setFitHeight(300);
                 imageView.setPreserveRatio(false);
                 imageView.setSmooth(true);
-                gpFotos.add(imageView, j, i);
+                gpFotos.add(infoOverlay, j, i);
                 imageViews.add(imageView);
+                infoOverlays.add(infoOverlay);
             }
         }
     }
@@ -110,6 +127,9 @@ public class VisualizarGrutaController implements Initializable {
             imageView.setImage(null);
             imageView.setVisible(false);
         }
+        for (InfoOverlay infoOverlay : infoOverlays) {
+            infoOverlay.setText("");
+        }
     }
 
     private void carregarFotos() {
@@ -118,6 +138,8 @@ public class VisualizarGrutaController implements Initializable {
         int imvcount = 0;
         for (GrutaImagem grutaImagem : imagens.subList(inicio, fim > imagens.size() ? imagens.size() : fim)) {
             ImageView imageView = imageViews.get(imvcount);
+            InfoOverlay infoOverlay = infoOverlays.get(imvcount);
+            infoOverlay.setText(grutaImagem.getLegenda());
             imageView.setImage(new Image(new ByteArrayInputStream(grutaImagem.getId().getImagem().getImagem())));
             imageView.setVisible(true);
             final List<Imagem> imagens = new ArrayList<>();
@@ -134,7 +156,7 @@ public class VisualizarGrutaController implements Initializable {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(VisualizarGrutaController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                AnchorPane anchorPane=(AnchorPane) FxManager.carregarComponente("ImageView360",imagens);
+                AnchorPane anchorPane = (AnchorPane) FxManager.carregarComponente("ImageView360", imagens);
                 anchorPane.setPrefSize(600, 400);
                 popOver.setContentNode(anchorPane);
                 popOver.show(apPrincipal.getScene().getWindow());
