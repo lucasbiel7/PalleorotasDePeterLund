@@ -215,10 +215,7 @@ public class GerenciarGrutaController implements Initializable {
 
     private void carregarFotos() {
         gpFoto.getChildren().clear();
-        pgImagem.setPageCount(Math.round(images.size() / 8));
-        if (pgImagem.getPageCount() == 0) {
-            pgImagem.setPageCount(1);
-        }
+        atualizarPaginacao();
         int numberOfObject = 0;
         int inicio = 8 * pgImagem.getCurrentPageIndex();
         for (GrutaImagem image : images.subList(inicio, inicio + 8 > images.size() ? images.size() : inicio + 8)) {
@@ -227,10 +224,10 @@ public class GerenciarGrutaController implements Initializable {
         }
     }
 
-    private void adicionarFoto(GrutaImagem grutaImage, int numberOfObject) {
+    private void adicionarFoto(final GrutaImagem grutaImage, int numberOfObject) {
         final ImageView imageView = new ImageView();
         final InfoOverlay infoOverlay = new InfoOverlay(imageView, grutaImage.getLegenda());
-        final StackPane pane=new StackPane(infoOverlay);
+        final StackPane pane = new StackPane(infoOverlay);
 //        imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setFitHeight(gpFoto.getWidth() / 4 - 40);
@@ -241,18 +238,20 @@ public class GerenciarGrutaController implements Initializable {
                 cmMenu.show(imageView, event.getSceneX(), event.getSceneY());
                 miAdicionarFotos.setOnAction((ActionEvent event1) -> {
                     if (grutaImage.getId() != null) {
-                        FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360", grutaImage), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
+                        FxManager.carregarJanela(FxManager.carregarComponente("GerenciarImagem360", grutaImage.getId().getImagem()), "Manipular imagens 360", FxManager.Tipo.MODAL).showAndWait();
                     } else {
                         Message.mostrarMessage("Mensagem na memoria", "Para adicionar imagens a imagem atual e necessário salvar as alterações.", Message.Tipo.ERRO);
                     }
                 });
                 miAdicionarLegenda.setOnAction((ActionEvent event1) -> {
-                    GrutaImagem grutaImagem = new GrutaImagemDAO().pegarPorId(grutaImage.getId());
-                    if (grutaImagem != null) {
-                        grutaImagem.setLegenda(Message.caixaDeTexto("Legenda da foto", "Digite uma legenda para a foto"));
-                        new GrutaImagemDAO().editar(grutaImagem);
-                    } else {
-                        Message.mostrarMessage("Salve os dados", "Para realizar essa função e necessário salvar as alterações.", Message.Tipo.ERRO);
+                    if (grutaImage != null) {
+                        GrutaImagem grutaImagemSalva = new GrutaImagemDAO().pegarPorId(grutaImage.getId());
+                        if (grutaImagemSalva != null) {
+                            grutaImage.setLegenda(Message.caixaDeTexto("Legenda da foto", "Digite uma legenda para a foto"));
+                            new GrutaImagemDAO().editar(grutaImage);
+                        } else {
+                            Message.mostrarMessage("Salve os dados", "Para realizar essa função e necessário salvar as alterações.", Message.Tipo.ERRO);
+                        }
                     }
                     carregarFotos();
                 });
@@ -270,7 +269,13 @@ public class GerenciarGrutaController implements Initializable {
         } else {
             gpFoto.add(pane, numberOfObject % 4, numberOfObject / 4);
         }
-
+        atualizarPaginacao();
     }
 
+    void atualizarPaginacao() {
+        pgImagem.setPageCount((int) Math.ceil(images.size() / 8.0));
+        if (pgImagem.getPageCount() == 0) {
+            pgImagem.setPageCount(1);
+        }
+    }
 }

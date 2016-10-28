@@ -86,7 +86,7 @@ public class VisualizarGrutaController implements Initializable {
     private void tbFotoOnSelectionChanged(Event event) {
         if (imagens == null || imagens.isEmpty()) {
             imagens = new GrutaImagemDAO().pegarPorGruta(gruta);
-            pgFotos.setPageCount(Math.round(imagens.size() / (LINHA * COLUNA)));
+            pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double)(LINHA * COLUNA)));
             carregarImageViews();
             limparImageView();
             carregarFotos();
@@ -101,15 +101,11 @@ public class VisualizarGrutaController implements Initializable {
             for (int j = 0; j < COLUNA; j++) {
                 final ImageView imageView = new ImageView();
                 final InfoOverlay infoOverlay = new InfoOverlay(imageView, "");
-                infoOverlay.textProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                        if (newValue==null || newValue.isEmpty()) {
-                            infoOverlay.setShowOnHover(false);
-                        } else {
-                            infoOverlay.setShowOnHover(true);
-                        }
-                    }
+                infoOverlay.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    atualizarInforOverlay(newValue, infoOverlay);
+                });
+                imageView.imageProperty().addListener((ObservableValue<? extends Image> observable, Image oldValue, Image newValue) -> {
+                    atualizarInforOverlay(infoOverlay.getText(), infoOverlay);
                 });
                 imageView.setFitWidth(300);
                 imageView.setFitHeight(300);
@@ -129,6 +125,7 @@ public class VisualizarGrutaController implements Initializable {
         }
         for (InfoOverlay infoOverlay : infoOverlays) {
             infoOverlay.setText("");
+            infoOverlay.setVisible(false);
         }
     }
 
@@ -142,6 +139,7 @@ public class VisualizarGrutaController implements Initializable {
             infoOverlay.setText(grutaImagem.getLegenda());
             imageView.setImage(new Image(new ByteArrayInputStream(grutaImagem.getId().getImagem().getImagem())));
             imageView.setVisible(true);
+            infoOverlay.setVisible(true);
             final List<Imagem> imagens = new ArrayList<>();
             Thread carregandoImagem = new Thread(() -> {
                 imagens.add(grutaImagem.getId().getImagem());
@@ -165,4 +163,19 @@ public class VisualizarGrutaController implements Initializable {
         }
     }
 
+    private void atualizarInforOverlay(String legenda, InfoOverlay infoOverlay) {
+        if (legenda == null || legenda.isEmpty()) {
+            if (infoOverlay.getContent() instanceof ImageView) {
+                if (((ImageView) infoOverlay.getContent()).getImage() != null) {
+                    infoOverlay.setVisible(true);
+                } else {
+                    infoOverlay.setVisible(false);
+                }
+            } else {
+                infoOverlay.setVisible(false);
+            }
+        } else {
+            infoOverlay.setVisible(true);
+        }
+    }
 }
