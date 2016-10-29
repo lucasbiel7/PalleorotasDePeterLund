@@ -5,11 +5,13 @@
  */
 package br.com.PalleorrotasDePeterLund.model.entity;
 
+import br.com.PalleorrotasDePeterLund.control.dao.AlternativaDAO;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Questao implements Serializable {
 
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "questao",fetch = FetchType.LAZY)
     private List<Alternativa> alternativas;
 
     @Id
@@ -31,10 +33,20 @@ public class Questao implements Serializable {
     @Column(columnDefinition = "varchar(64)")
     private String id;
     private String enunciado;
-    private double pontuacao;
+    private int pontuacao;
+    
 
     public String getId() {
         return id;
+    }
+
+    public List<Alternativa> getAlternativas() {
+        
+        return alternativas;
+    }
+
+    public void setAlternativas(List<Alternativa> alternativas) {
+        this.alternativas = alternativas;
     }
 
     public void setId(String id) {
@@ -49,11 +61,11 @@ public class Questao implements Serializable {
         this.enunciado = enunciado;
     }
 
-    public double getPontuacao() {
+    public int getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(double pontuacao) {
+    public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
     }
 

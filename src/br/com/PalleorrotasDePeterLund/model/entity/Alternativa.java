@@ -33,6 +33,15 @@ public class Alternativa implements Serializable {
     @ManyToOne
     private Questao questao;
 
+    public Questao getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(Questao questao) {
+        this.questao = questao;
+    }
+
+    
     public String getId() {
         return id;
     }
