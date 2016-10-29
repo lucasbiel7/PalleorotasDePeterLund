@@ -47,9 +47,12 @@ public class GerenciarAplicativoController implements Initializable {
 
     @FXML
     private void btPeterLandActionEvent(ActionEvent ae) {
-         spContainer.setContent(FxManager.carregarComponente("GerenciarPeterLund"));
+        spContainer.setContent(FxManager.carregarComponente("GerenciarPeterLund"));
     }
-    
-    
+
+    @FXML
+    private void btQuestoesActionEvent(ActionEvent ae) {
+        spContainer.setContent(FxManager.carregarComponente("GerenciarQuestao"));
+    }
 
 }
