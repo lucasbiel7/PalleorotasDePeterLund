@@ -9,6 +9,7 @@ import br.com.PalleorrotasDePeterLund.control.dao.AlternativaDAO;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,8 +25,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Questao implements Serializable {
 
-    @OneToMany(mappedBy = "questao",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "questao", cascade = CascadeType.REMOVE)
     private List<Alternativa> alternativas;
+    @OneToMany(mappedBy = "id.questao", cascade = CascadeType.REMOVE)
+    private List<Resposta> respostas;
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -34,19 +37,9 @@ public class Questao implements Serializable {
     private String id;
     private String enunciado;
     private int pontuacao;
-    
 
     public String getId() {
         return id;
-    }
-
-    public List<Alternativa> getAlternativas() {
-        
-        return alternativas;
-    }
-
-    public void setAlternativas(List<Alternativa> alternativas) {
-        this.alternativas = alternativas;
     }
 
     public void setId(String id) {

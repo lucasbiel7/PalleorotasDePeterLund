@@ -6,6 +6,7 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.Sessao;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Gruta;
@@ -95,6 +96,15 @@ public class InicioController implements Initializable {
     private void lbUsuarioMouseEvent(MouseEvent mouseEvent) {
         if (Sessao.usuario != null) {
             apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("GerenciarAplicativo")));
+        }
+    }
+
+    @FXML
+    private void btCuriosidadesActionEvent(ActionEvent ae) {
+        if (Sessao.usuario != null) {
+            apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("ResponderQuestao")));
+        } else {
+            Message.mostrarMessage("Usuário não autenticado", "É necessária fazer login para acessar está área!", Message.Tipo.ERRO);
         }
     }
 

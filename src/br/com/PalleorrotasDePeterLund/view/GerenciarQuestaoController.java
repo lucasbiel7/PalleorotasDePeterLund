@@ -125,7 +125,7 @@ public class GerenciarQuestaoController implements Initializable {
         alternativa.setConteudo(tfAlternativa.getText());
         alternativa.setQuestao(questao);
         alternativa.setCorreta(rbAlternativaCorreta.isSelected());
-        if (!alternativas.contains(alternativa)) {
+        if (!alternativas.contains(alternativa) || alternativa.getId() == null) {
             alternativas.add(alternativa);
         }
         Message.mostrarMessage("Adicionado alternativa", "Alternativa foi adicionada com sucesso!", Message.Tipo.INFORMACAO);
@@ -169,6 +169,14 @@ public class GerenciarQuestaoController implements Initializable {
         questao = new Questao();
         alternativas = new ArrayList<>();
         carregarQuestao();
+    }
+
+    @FXML
+    private void miExcluiQuestaoActionEvent(ActionEvent ae) {
+        if (questao != null) {
+            new QuestaoDAO().excluir(questao);
+            Message.mostrarMessage("Questão excluida", "Todos os registros ligado a está questão foram excluidos", Message.Tipo.INFORMACAO);
+        }
     }
 
     private void carregarQuestao() {
