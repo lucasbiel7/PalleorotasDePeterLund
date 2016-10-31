@@ -40,7 +40,6 @@ public class PeterLund implements Serializable {
     public void setDescricaoFoto(String descricaoFoto) {
         this.descricaoFoto = descricaoFoto;
     }
-    
 
     public String getTitulo() {
         return titulo;
@@ -50,7 +49,6 @@ public class PeterLund implements Serializable {
         this.titulo = titulo;
     }
 
-    
     public String getId() {
         return id;
     }

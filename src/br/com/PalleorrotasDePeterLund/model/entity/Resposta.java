@@ -22,6 +22,14 @@ public class Resposta implements Serializable {
     @Embeddable
     public static class RespostaID implements Serializable {
 
+        public RespostaID(Questao questao, Usuario usuario) {
+            this.questao = questao;
+            this.usuario = usuario;
+        }
+
+        public RespostaID() {
+        }
+
         @ManyToOne
         private Questao questao;
         @ManyToOne

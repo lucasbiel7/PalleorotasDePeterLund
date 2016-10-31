@@ -5,6 +5,8 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.Sessao;
 import br.com.PalleorrotasDePeterLund.control.dao.AlternativaDAO;
 import br.com.PalleorrotasDePeterLund.control.dao.QuestaoDAO;
@@ -22,11 +24,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 /**
  * FXML Controller class
@@ -60,7 +65,10 @@ public class ResponderQuestaoController implements Initializable {
         if (questaos.isEmpty()) {
             lbConteudo.setText("Parabéns!!\n"
                     + "Você já respondeu todas as questões!");
+            lbConteudo.setContentDisplay(ContentDisplay.CENTER);
             lbConteudo.setAlignment(Pos.CENTER);
+            lbConteudo.setTextAlignment(TextAlignment.CENTER);
+            
             btConfirmarResposta.setVisible(false);
         } else {
             questao = questaos.get(new Random().nextInt(questaos.size()));
@@ -68,8 +76,13 @@ public class ResponderQuestaoController implements Initializable {
             List<Alternativa> alternativas = new AlternativaDAO().pegarPorQuestao(questao);
             ToggleGroup group = new ToggleGroup();
             for (Alternativa alternativa : alternativas) {
-                RadioButton radioButton = new RadioButton(alternativa.getConteudo());
+                final RadioButton radioButton = new RadioButton(alternativa.getConteudo());
                 radioButton.setToggleGroup(group);
+                radioButton.setOnAction((ActionEvent event) -> {
+                    if (radioButton.isSelected()) {
+                        ResponderQuestaoController.this.alternativa = alternativa;
+                    }
+                });
                 vbConteudo.getChildren().add(radioButton);
             }
         }
@@ -77,11 +90,19 @@ public class ResponderQuestaoController implements Initializable {
 
     @FXML
     private void btConfirmarRespostaActionEvent(ActionEvent ae) {
-
+        if (alternativa != null) {
+            Resposta resposta = new Resposta();
+            resposta.setId(new Resposta.RespostaID(questao, Sessao.usuario));
+            resposta.setAlternativa(alternativa);
+            new RespostaDAO().cadastrar(resposta);
+            ((ScrollPane) apPrincipal.getParent().getParent().getParent()).setContent(FxManager.carregarComponente("FeedBackResposta", resposta));
+        } else {
+            Message.mostrarMessage("Alternativa inválida", "Para continuar e necessário selecionar uma alternativa!!", Message.Tipo.ERRO);
+        }
     }
 
     @FXML
     private void btRankingActionEvent(ActionEvent ae) {
-
+        ((ScrollPane) apPrincipal.getParent().getParent().getParent()).setContent(FxManager.carregarComponente("RankPerguntas"));
     }
 }

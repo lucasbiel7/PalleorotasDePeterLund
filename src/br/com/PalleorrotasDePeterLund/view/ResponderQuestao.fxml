@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="440.0" prefWidth="743.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.ResponderQuestaoController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="440.0" prefWidth="743.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.ResponderQuestaoController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -23,15 +23,18 @@
          <content>
             <VBox fx:id="vbConteudo" prefHeight="273.0" prefWidth="694.0">
                <children>
-                  <Label fx:id="lbConteudo" minHeight="-Infinity" minWidth="-Infinity" />
+                  <Label fx:id="lbConteudo" minHeight="-Infinity" minWidth="-Infinity">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </VBox>
          </content>
       </ScrollPane>
       <HBox layoutX="615.0" layoutY="388.0" spacing="5.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
-            <Button mnemonicParsing="false" text="Ranking" />
-            <Button fx:id="btConfirmarResposta" mnemonicParsing="false" text="Confirma resposta" />
+            <Button mnemonicParsing="false" onAction="#btRankingActionEvent" text="Ranking" />
+            <Button fx:id="btConfirmarResposta" mnemonicParsing="false" onAction="#btConfirmarRespostaActionEvent" text="Confirma resposta" />
          </children>
       </HBox>
    </children>
