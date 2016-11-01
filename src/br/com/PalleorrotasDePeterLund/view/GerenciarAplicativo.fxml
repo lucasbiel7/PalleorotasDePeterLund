@@ -17,6 +17,7 @@
             <Button mnemonicParsing="false" onAction="#btPeterLandActionEvent" prefHeight="70.0" prefWidth="158.0" text="Peter lund" />
             <Button mnemonicParsing="false" onAction="#btGrutasActionEvent" prefHeight="70.0" prefWidth="151.0" text="Grutas" />
             <Button mnemonicParsing="false" onAction="#btQuestoesActionEvent" prefHeight="70.0" prefWidth="153.0" text="Questões" />
+            <Button mnemonicParsing="false" onAction="#btPerfisDeUsuarioActionEvent" prefHeight="70.0" prefWidth="153.0" text="Perfis de usuários" />
          </children>
       </VBox>
       <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" layoutX="174.0" layoutY="14.0" prefHeight="381.0" prefWidth="419.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />

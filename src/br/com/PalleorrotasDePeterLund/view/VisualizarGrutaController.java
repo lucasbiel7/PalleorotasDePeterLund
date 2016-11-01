@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -34,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.PopOver;
 
@@ -49,12 +49,11 @@ public class VisualizarGrutaController implements Initializable {
     @FXML
     private Label lbTitulo;
     @FXML
-    private Text tConteudo;
-
-    @FXML
     private GridPane gpFotos;
     @FXML
     private Pagination pgFotos;
+    @FXML
+    private WebView wvConteudo;
 
     private Gruta gruta;
     private List<GrutaImagem> imagens;
@@ -73,7 +72,16 @@ public class VisualizarGrutaController implements Initializable {
         Platform.runLater(() -> {
             gruta = (Gruta) apPrincipal.getUserData();
             lbTitulo.setText(gruta.getNome());
-            tConteudo.setText(gruta.getConteudo());
+            wvConteudo.getEngine().loadContent("<html><head><style>"
+                    + "body {"
+                    + "background-color: #EFFEBA;"
+                    + "color:black;"
+                    + "}"
+                    + "div{"
+                    + "text-align: justify;"
+                    + "}"
+                    + "</style>"
+                    + "<head><body><div>" + gruta.getConteudo());
         });
         pgFotos.currentPageIndexProperty().addListener((Observable observable) -> {
             limparImageView();
@@ -86,7 +94,7 @@ public class VisualizarGrutaController implements Initializable {
     private void tbFotoOnSelectionChanged(Event event) {
         if (imagens == null || imagens.isEmpty()) {
             imagens = new GrutaImagemDAO().pegarPorGruta(gruta);
-            pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double)(LINHA * COLUNA)));
+            pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double) (LINHA * COLUNA)));
             carregarImageViews();
             limparImageView();
             carregarFotos();

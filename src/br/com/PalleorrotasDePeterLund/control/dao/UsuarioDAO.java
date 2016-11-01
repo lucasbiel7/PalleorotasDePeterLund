@@ -7,6 +7,8 @@ package br.com.PalleorrotasDePeterLund.control.dao;
 
 import br.com.PalleorrotasDePeterLund.model.GenericaDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Usuario;
+import java.util.List;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -22,8 +24,14 @@ public class UsuarioDAO extends GenericaDAO<Usuario> {
     }
 
     public Usuario pegarPorFacebooId(String id) {
-         entity = (Usuario) criteria.add(Restrictions.eq("fbId", id)).uniqueResult();
+        entity = (Usuario) criteria.add(Restrictions.eq("fbId", id)).uniqueResult();
         closeSession();
         return entity;
+    }
+
+    public List<Usuario> pegarPorNome(String text) {
+        entitys = criteria.add(Restrictions.ilike("nome", text, MatchMode.ANYWHERE)).list();
+        closeSession();
+        return entitys;
     }
 }

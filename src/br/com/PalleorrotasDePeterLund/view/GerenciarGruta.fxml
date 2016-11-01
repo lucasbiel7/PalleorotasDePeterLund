@@ -52,7 +52,11 @@
                </content></TitledPane>
             <TitledPane text="Descricao">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainFxmlClass" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainFxmlClass">
+                     <children>
+                        <Label layoutX="24.0" layoutY="14.0" text="Conteúdo" />
+                        <TextArea fx:id="taConteudo" layoutX="24.0" layoutY="38.0" prefHeight="108.0" prefWidth="565.0" />
+                     </children></AnchorPane>
                </content>
             </TitledPane>
             <TitledPane text="Fotos">

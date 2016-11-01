@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -34,7 +33,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -73,7 +71,8 @@ public class GerenciarGrutaController implements Initializable {
     @FXML
     private Pagination pgImagem;
     @FXML
-    private SplitMenuButton smb;
+    private TextArea taConteudo;
+
     private Gruta gruta;
     private List<GrutaImagem> images;
 
@@ -119,6 +118,7 @@ public class GerenciarGrutaController implements Initializable {
     private void btSalvarActionEvent(ActionEvent ae) {
         gruta.setNome(tfNome.getText());
         gruta.setDescricaoMapa(taDescricaoMapa.getText());
+        gruta.setConteudo(taConteudo.getText());
         if (gruta.getId() == null) {
             new GrutaDAO().cadastrar(gruta);
         } else {
@@ -206,9 +206,11 @@ public class GerenciarGrutaController implements Initializable {
         if (gruta.getId() == null) {
             tfNome.clear();
             taDescricaoMapa.clear();
+            taConteudo.clear();
         } else {
             tfNome.setText(gruta.getNome());
-            taDescricaoMapa.setText(gruta.getNome());
+            taDescricaoMapa.setText(gruta.getDescricaoMapa());
+            taConteudo.setText(gruta.getConteudo());
             carregarFotos();
         }
     }
