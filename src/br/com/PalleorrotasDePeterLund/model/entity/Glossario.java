@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -27,6 +28,7 @@ public class Glossario implements Serializable {
     @Column(columnDefinition = "varchar(64)")
     private String id;
     private String palavra;
+    @Lob
     private String significado;
     @ManyToOne
     private Area area;
