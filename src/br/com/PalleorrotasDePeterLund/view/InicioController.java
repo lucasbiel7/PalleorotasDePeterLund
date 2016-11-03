@@ -107,6 +107,11 @@ public class InicioController implements Initializable {
             Message.mostrarMessage("Usuário não autenticado", "É necessária fazer login para acessar está área!", Message.Tipo.ERRO);
         }
     }
+    
+    @FXML
+    private void btGlossarioActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("Glossario")));
+    }
 
     private void atualizarLogin() {
         if (Sessao.usuario != null) {

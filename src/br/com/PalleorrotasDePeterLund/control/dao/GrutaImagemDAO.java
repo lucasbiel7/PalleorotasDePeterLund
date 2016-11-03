@@ -24,4 +24,10 @@ public class GrutaImagemDAO extends GenericaDAO<GrutaImagem> {
         return entitys;
     }
 
+    public List<GrutaImagem> pegarPorGrutaTexto(Gruta gruta, boolean fotoTexto) {
+        entitys = criteria.add(Restrictions.eq("id.gruta", gruta)).add(Restrictions.eq("fotoTexto", fotoTexto)).list();
+        closeSession();
+        return entitys;
+    }
+
 }

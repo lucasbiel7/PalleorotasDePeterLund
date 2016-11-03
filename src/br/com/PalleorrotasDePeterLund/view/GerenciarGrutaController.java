@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -82,6 +83,7 @@ public class GerenciarGrutaController implements Initializable {
 
     private MenuItem miAdicionarFotos;
     private MenuItem miAdicionarLegenda;
+    private MenuItem miFotoTexto;
     private boolean removerFoto;
 
     /**
@@ -94,7 +96,9 @@ public class GerenciarGrutaController implements Initializable {
         cmMenu = new ContextMenu();
         miAdicionarFotos = new MenuItem("Adicionar conjunto de imagens");
         miAdicionarLegenda = new MenuItem("Adicionar legenda");
-        cmMenu.getItems().addAll(miAdicionarFotos, miAdicionarLegenda);
+        miFotoTexto = new MenuItem("Foto texto");
+        
+        cmMenu.getItems().addAll(miAdicionarFotos, miAdicionarLegenda,miFotoTexto);
         tvGruta.getItems().setAll(new GrutaDAO().pegarTodos());
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tvGruta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Gruta> observable, Gruta oldValue, Gruta newValue) -> {
@@ -257,6 +261,16 @@ public class GerenciarGrutaController implements Initializable {
                     }
                     carregarFotos();
                 });
+                miFotoTexto.setOnAction((ActionEvent event1) -> {
+                    for (GrutaImagem image : images) {
+                        image.setFotoTexto(false);
+                        new GrutaImagemDAO().editar(image);
+                    }
+                    grutaImage.setFotoTexto(true);
+                    new GrutaImagemDAO().editar(grutaImage);
+                    Message.mostrarMessage("Mensagem marcada", "Imagem foi marcada com imagem ao texto", Message.Tipo.INFORMACAO);
+                });
+
             } else if (removerFoto) {
                 if (grutaImage.getId().getImagem().getId() != null) {
                     new ImagemDAO().excluir(grutaImage.getId().getImagem());

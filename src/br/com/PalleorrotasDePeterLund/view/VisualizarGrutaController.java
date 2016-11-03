@@ -31,8 +31,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.PopOver;
@@ -49,19 +50,22 @@ public class VisualizarGrutaController implements Initializable {
     @FXML
     private Label lbTitulo;
     @FXML
-    private GridPane gpFotos;
+    private FlowPane fpFotos;
     @FXML
     private Pagination pgFotos;
     @FXML
     private WebView wvConteudo;
-
+    @FXML
+    private StackPane spImageTexto;
+    @FXML
+    private AnchorPane apConteudo;
     private Gruta gruta;
     private List<GrutaImagem> imagens;
     private List<ImageView> imageViews;
     private List<InfoOverlay> infoOverlays;
 
     private final int LINHA = 2;
-    private final int COLUNA = 3;
+    private int COLUNA = 3;
     private PopOver popOver;
 
     /**
@@ -82,6 +86,15 @@ public class VisualizarGrutaController implements Initializable {
                     + "}"
                     + "</style>"
                     + "<head><body><div>" + gruta.getConteudo());
+            List<GrutaImagem> grutaImagens = new GrutaImagemDAO().pegarPorGrutaTexto(gruta, true);
+            if (!grutaImagens.isEmpty()) {
+                ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(grutaImagens.get(0).getId().getImagem().getImagem())));
+                imageView.setPreserveRatio(true);
+                imageView.setFitWidth(400);
+                imageView.setSmooth(true);
+                InfoOverlay infoOverlay = new InfoOverlay(imageView, grutaImagens.get(0).getLegenda());
+                spImageTexto.getChildren().setAll(infoOverlay);
+            }
         });
         pgFotos.currentPageIndexProperty().addListener((Observable observable) -> {
             limparImageView();
@@ -94,6 +107,8 @@ public class VisualizarGrutaController implements Initializable {
     private void tbFotoOnSelectionChanged(Event event) {
         if (imagens == null || imagens.isEmpty()) {
             imagens = new GrutaImagemDAO().pegarPorGruta(gruta);
+            COLUNA=(int) fpFotos.getWidth()/310;
+            System.out.println("COLUNA = " + COLUNA);
             pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double) (LINHA * COLUNA)));
             carregarImageViews();
             limparImageView();
@@ -102,7 +117,7 @@ public class VisualizarGrutaController implements Initializable {
     }
 
     private void carregarImageViews() {
-        gpFotos.getChildren().clear();
+        fpFotos.getChildren().clear();
         imageViews = new ArrayList<>();
         infoOverlays = new ArrayList<>();
         for (int i = 0; i < LINHA; i++) {
@@ -119,7 +134,7 @@ public class VisualizarGrutaController implements Initializable {
                 imageView.setFitHeight(300);
                 imageView.setPreserveRatio(false);
                 imageView.setSmooth(true);
-                gpFotos.add(infoOverlay, j, i);
+                fpFotos.getChildren().add(infoOverlay);
                 imageViews.add(imageView);
                 infoOverlays.add(infoOverlay);
             }

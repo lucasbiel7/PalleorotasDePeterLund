@@ -44,6 +44,15 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" onAction="#btGlossarioActionEvent" prefHeight="250.0" prefWidth="500.0" text="Glossário" wrapText="true">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/glossario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Museu" wrapText="true">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -53,7 +62,7 @@
                   </ImageView>
                </graphic></Button>
             <SplitMenuButton fx:id="smbGrutas" alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Grutas" wrapText="true" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Geologia" wrapText="true">
+            <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="500.0" text="Geologia&#10;Regional" wrapText="true">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

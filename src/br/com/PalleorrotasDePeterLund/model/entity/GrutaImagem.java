@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -85,8 +86,19 @@ public class GrutaImagem implements Serializable {
     }
     @EmbeddedId
     private GrutaImagenID id;
+    @Lob
     private String legenda;
+    private boolean fotoTexto;
 
+    public boolean isFotoTexto() {
+        return fotoTexto;
+    }
+
+    public void setFotoTexto(boolean fotoTexto) {
+        this.fotoTexto = fotoTexto;
+    }
+
+    
     public String getLegenda() {
         return legenda;
     }
@@ -94,7 +106,7 @@ public class GrutaImagem implements Serializable {
     public void setLegenda(String legenda) {
         this.legenda = legenda;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;

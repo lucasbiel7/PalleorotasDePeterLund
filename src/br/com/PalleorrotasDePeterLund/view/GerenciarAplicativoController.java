@@ -59,5 +59,14 @@ public class GerenciarAplicativoController implements Initializable {
     private void btPerfisDeUsuarioActionEvent(ActionEvent ae) {
         spContainer.setContent(FxManager.carregarComponente("GerenciarUsuarios"));
     }
+    
+    @FXML
+    private void btGerenciarGlossarioActionEvent(ActionEvent ae) {
+        spContainer.setContent(FxManager.carregarComponente("GerenciarGlossario"));
+    }
+    @FXML
+    private void btGerenciarAreaActionEvent(ActionEvent ae) {
+        spContainer.setContent(FxManager.carregarComponente("GerenciarArea"));
+    }
 
 }
