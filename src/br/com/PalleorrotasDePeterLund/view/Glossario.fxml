@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GlossarioController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GlossarioController">
     <stylesheets>
-        <URL value="@estilo.css"/>
+        <URL value="@estilo.css" />
     </stylesheets>
+   <children>
+      <TextField fx:id="tfPesquisa" layoutX="14.0" layoutY="14.0" onKeyReleased="#tfPesquisaKeyEvent" prefHeight="25.0" prefWidth="569.0" promptText="Digite a palavra para filtrar" />
+      <ScrollPane fx:id="spContainer" fitToHeight="true" fitToWidth="true" layoutX="15.0" layoutY="45.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
+         <content>
+            <TextFlow fx:id="tfContainer" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>
