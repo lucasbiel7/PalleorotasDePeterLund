@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -22,6 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author lucas
  */
 @Entity
+@Table(name="alternativa")
 public class Alternativa implements Serializable {
 
     @OneToMany(mappedBy = "alternativa")

@@ -108,7 +108,6 @@ public class VisualizarGrutaController implements Initializable {
         if (imagens == null || imagens.isEmpty()) {
             imagens = new GrutaImagemDAO().pegarPorGruta(gruta);
             COLUNA=(int) fpFotos.getWidth()/310;
-            System.out.println("COLUNA = " + COLUNA);
             pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double) (LINHA * COLUNA)));
             carregarImageViews();
             limparImageView();

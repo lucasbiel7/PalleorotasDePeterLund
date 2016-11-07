@@ -27,13 +27,13 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -73,10 +73,13 @@ public class GerenciarGrutaController implements Initializable {
     private Pagination pgImagem;
     @FXML
     private TextArea taConteudo;
+    @FXML
+    private RadioButton rbGruta;
 
     private Gruta gruta;
     private List<GrutaImagem> images;
-
+    @FXML
+    private RadioButton rbMuseu;
     private FileChooser fcImagem;
 
     private ContextMenu cmMenu;
@@ -97,8 +100,8 @@ public class GerenciarGrutaController implements Initializable {
         miAdicionarFotos = new MenuItem("Adicionar conjunto de imagens");
         miAdicionarLegenda = new MenuItem("Adicionar legenda");
         miFotoTexto = new MenuItem("Foto texto");
-        
-        cmMenu.getItems().addAll(miAdicionarFotos, miAdicionarLegenda,miFotoTexto);
+
+        cmMenu.getItems().addAll(miAdicionarFotos, miAdicionarLegenda, miFotoTexto);
         tvGruta.getItems().setAll(new GrutaDAO().pegarTodos());
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tvGruta.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Gruta> observable, Gruta oldValue, Gruta newValue) -> {
@@ -116,6 +119,7 @@ public class GerenciarGrutaController implements Initializable {
         pgImagem.currentPageIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
             carregarFotos();
         });
+        gruta = new Gruta();
     }
 
     @FXML
@@ -123,6 +127,7 @@ public class GerenciarGrutaController implements Initializable {
         gruta.setNome(tfNome.getText());
         gruta.setDescricaoMapa(taDescricaoMapa.getText());
         gruta.setConteudo(taConteudo.getText());
+        gruta.setMuseu(rbMuseu.isSelected());
         if (gruta.getId() == null) {
             new GrutaDAO().cadastrar(gruta);
         } else {
@@ -162,7 +167,6 @@ public class GerenciarGrutaController implements Initializable {
                         Imagem imagem = new Imagem();
                         try {
                             String extensao = arquivo.getName().substring(arquivo.getName().lastIndexOf(".") + 1);
-                            System.out.println(extensao);
                             imagem.setImagem(ImageManipulation.imageReductor(Files.readAllBytes(arquivo.toPath()), extensao));
                         } catch (IOException ex) {
                             Logger.getLogger(GerenciarGrutaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,11 +215,14 @@ public class GerenciarGrutaController implements Initializable {
             tfNome.clear();
             taDescricaoMapa.clear();
             taConteudo.clear();
+            rbGruta.setSelected(true);
         } else {
             tfNome.setText(gruta.getNome());
             taDescricaoMapa.setText(gruta.getDescricaoMapa());
             taConteudo.setText(gruta.getConteudo());
             carregarFotos();
+            rbGruta.setSelected(!gruta.isMuseu());
+            rbMuseu.setSelected(gruta.isMuseu());
         }
     }
 

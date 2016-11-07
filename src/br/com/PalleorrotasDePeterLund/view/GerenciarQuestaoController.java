@@ -174,8 +174,13 @@ public class GerenciarQuestaoController implements Initializable {
     @FXML
     private void miExcluiQuestaoActionEvent(ActionEvent ae) {
         if (questao != null) {
+            System.out.println("excluir");
             new QuestaoDAO().excluir(questao);
             Message.mostrarMessage("Questão excluida", "Todos os registros ligado a está questão foram excluidos", Message.Tipo.INFORMACAO);
+            tvQuestoes.getItems().setAll(new QuestaoDAO().pegarTodos());
+            questao = new Questao();
+            alternativas = new ArrayList<>();
+            carregarQuestao();
         }
     }
 

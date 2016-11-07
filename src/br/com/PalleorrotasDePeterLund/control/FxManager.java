@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -51,6 +52,7 @@ public class FxManager {
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.setTitle(title + " - " + Application.NOME);
+        stage.getIcons().add(ImageFactory.loadImage("icone.png"));
         for (Tipo tipo : tipos) {
             switch (tipo) {
                 case EXIT_ON_CLOSE:

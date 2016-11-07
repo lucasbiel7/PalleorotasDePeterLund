@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="650.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GeologiaRegionalController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="92.0" prefWidth="574.0" text="Geologia Regional – Região de Cordisburgo, Lagoa Santa e Sete Lagoas" textAlignment="CENTER" underline="true" wrapText="true" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="106.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="106.0">
+         <content>
+            <TextFlow prefHeight="289.0" prefWidth="574.0" textAlignment="JUSTIFY">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#9;As grutas estudadas, Maquiné, Lapinha e Rei do Mato, são compostas por rochas calcárias, que se formaram no fundo de oceanos. Devido à sua formação, estas três grutas pertencem ao grupo Bambuí, nome dado a uma região que possui rochas semelhantes, no caso calcárias e que abrange os estados de Minas Gerais, Bahia, Goiás, Tocantins e Distrito Federal. Foram encontrados fósseis de animais marinhos que pertencem à região abrangida pelo grupo Bambuí, evidenciando que a 555 milhões de anos atrás uma parte do mar cobria toda essa região do Brasil.&#10;&#9;O grupo Bambuí é divido em formações, rochas que apresentam similaridade como idade e composição química. De acordo com as características semelhantes das grutas estudadas, Rei do Mato e Lapinha enquadram-se na formação Sete Lagoas, composta por rochas carbonáticas (calcárias e dolomitos). A gruta de Maquiné, enquadra-se na formação Lagoa do Jacaré, composta por rochas predominante carbonáticas e calcarenitos.&#10;&#9;O grupo Bambuí pertence ao supergrupo São Francisco, ou seja, uma associação de vários grupos geológicos que apresentam características semelhantes relacionadas aos estudos das camadas rochosas.&#10;&#9;Outra característica em comum analisada nas grutas está relacionada à sua geomorfologia (estudo das formas do relevo terrestre). Ambas estão localizadas em uma região de relevo cártisco, associado às rochas calcarias e  são áreas onde as passagens rochosas apresentam ruinas abandonadas e esburacadas. Este terreno é caracterizado por apresentar rochas solúveis e drenagem subterrânea, onde a água da chuva infiltra-se no solo percorrendo fendas, condutos e cavernas.&#10;" wrappingWidth="0.6">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

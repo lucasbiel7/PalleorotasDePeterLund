@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -21,6 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author lucas
  */
 @Entity
+@Table(name = "questao")
 public class Questao implements Serializable {
 
     @OneToMany(mappedBy = "questao", cascade = CascadeType.REMOVE)

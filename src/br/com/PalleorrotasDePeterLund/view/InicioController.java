@@ -12,6 +12,7 @@ import br.com.PalleorrotasDePeterLund.control.dao.GrutaDAO;
 import br.com.PalleorrotasDePeterLund.model.entity.Gruta;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -60,7 +61,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         atualizarLogin();
-        for (Gruta gruta : new GrutaDAO().pegarTodos()) {
+        for (Gruta gruta : new GrutaDAO().pegarPorMuseu(false)) {
             MenuItem menuItem = new MenuItem(gruta.getNome());
             menuItem.setOnAction((ActionEvent event) -> {
                 apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("VisualizarGruta", gruta)));
@@ -100,19 +101,59 @@ public class InicioController implements Initializable {
     }
 
     @FXML
-    private void btCuriosidadesActionEvent(ActionEvent ae) {
+    private void btQuestaoActionEvent(ActionEvent ae) {
         if (Sessao.usuario != null) {
             apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("ResponderQuestao")));
         } else {
             Message.mostrarMessage("Usuário não autenticado", "É necessária fazer login para acessar está área!", Message.Tipo.ERRO);
         }
     }
-    
+
+    @FXML
+    private void btCuriosidadesActionEvent(ActionEvent ae) {
+
+    }
+
     @FXML
     private void btGlossarioActionEvent(ActionEvent ae) {
         apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("Glossario")));
     }
 
+    @FXML
+    private void btMapaActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("MapaInterativo")));
+    }
+
+    @FXML
+    private void btGeologiaRegionalActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("GeologiaRegional")));
+    }
+
+    @FXML
+    private void btFormacaoGrutaActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("FormacaoGruta")));
+    }
+
+    @FXML
+    private void btMuseuActionEvent(ActionEvent ae) {
+        List<Gruta> grutas = new GrutaDAO().pegarPorMuseu(true);
+        if (!grutas.isEmpty()) {
+            apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("VisualizarGruta", grutas.get(0))));
+        } else {
+            Message.mostrarMessage("Museu não encontrado", "Não foi possível encontrar nenhum museu\n em nossa base de dados", Message.Tipo.ERRO);
+        }
+    }
+
+    @FXML
+    private void miLuziaActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("Luzia")));
+    }
+    
+    @FXML
+    private void miPovoLuziaActionEvent(ActionEvent ae) {
+        apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("PovoDeLuzia")));
+    }
+    
     private void atualizarLogin() {
         if (Sessao.usuario != null) {
             lbUsuario.setText(Sessao.usuario.getNome());
@@ -126,4 +167,5 @@ public class InicioController implements Initializable {
             hlLogin.setText("Login");
         }
     }
+
 }

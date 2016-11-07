@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +32,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.TextAlignment;
 
 /**
@@ -68,7 +71,7 @@ public class ResponderQuestaoController implements Initializable {
             lbConteudo.setContentDisplay(ContentDisplay.CENTER);
             lbConteudo.setAlignment(Pos.CENTER);
             lbConteudo.setTextAlignment(TextAlignment.CENTER);
-            
+            lbConteudo.prefWidthProperty().bind(vbConteudo.widthProperty());
             btConfirmarResposta.setVisible(false);
         } else {
             questao = questaos.get(new Random().nextInt(questaos.size()));
@@ -78,6 +81,7 @@ public class ResponderQuestaoController implements Initializable {
             for (Alternativa alternativa : alternativas) {
                 final RadioButton radioButton = new RadioButton(alternativa.getConteudo());
                 radioButton.setToggleGroup(group);
+                radioButton.setFont(Font.font("system", FontPosture.REGULAR, 24));
                 radioButton.setOnAction((ActionEvent event) -> {
                     if (radioButton.isSelected()) {
                         ResponderQuestaoController.this.alternativa = alternativa;

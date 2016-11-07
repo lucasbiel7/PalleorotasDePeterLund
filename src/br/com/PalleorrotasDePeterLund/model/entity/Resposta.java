@@ -11,12 +11,14 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author lucas
  */
 @Entity
+@Table(name = "resposta")
 public class Resposta implements Serializable {
 
     @Embeddable

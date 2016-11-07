@@ -33,6 +33,16 @@ public class Gruta implements Serializable {
     private String descricaoMapa;
     @Lob
     private String conteudo;
+    private boolean museu;
+
+    public boolean isMuseu() {
+        return museu;
+    }
+
+    public void setMuseu(boolean museu) {
+        this.museu = museu;
+    }
+    
 
     public String getConteudo() {
         return conteudo;

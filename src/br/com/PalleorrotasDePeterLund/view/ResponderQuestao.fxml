@@ -23,9 +23,9 @@
          <content>
             <VBox fx:id="vbConteudo" prefHeight="273.0" prefWidth="694.0">
                <children>
-                  <Label fx:id="lbConteudo" minHeight="-Infinity" minWidth="-Infinity">
+                  <Label fx:id="lbConteudo" minHeight="-Infinity" minWidth="-Infinity" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="24.0" />
                      </font></Label>
                </children>
             </VBox>

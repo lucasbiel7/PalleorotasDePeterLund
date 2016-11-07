@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="513.0" prefWidth="658.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.LuziaController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="24.0" prefHeight="53.0" prefWidth="303.0" text="Luzia, a primeira brasileira encontrada na América " textAlignment="CENTER" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="spFoto" layoutX="14.0" layoutY="82.0" prefHeight="412.0" prefWidth="303.0" AnchorPane.leftAnchor="14.0" />
+      <ScrollPane fitToWidth="true" layoutX="350.0" layoutY="75.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="75.0">
+         <content>
+            <TextFlow prefHeight="315.0" prefWidth="500.0" textAlignment="JUSTIFY">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#9;Logo no início dos anos de 1970 durante pesquisas arqueológicas franco-brasileiras chefiada pela arqueóloga francesa Annette Laming-Emperaire, foi descoberto um fóssil humano em meio as escavações realizadas na Lapa Vermelha, gruta situada no município de Pedro Leopoldo, região metropolitana de Minas Gerais.&#10;&#9;A gruta era famosa pelos estudos e pesquisas já realizadas pelo cientista Peter Lund, que descobriu na região nos anos entre 1835 e 1845 milhares de fósseis de animais extintos na época do Pleistoceno. &#10;&#9;O fóssil encontrado era o crânio de uma mulher, com aproximadamente 1,50 de altura e cerca de 20 anos de idade, que se alimentava de folhas, frutos, raízes e carne. Sua morte foi ocasionada provavelmente pelo ataque de animais ou ocasionada devido algum acidente sofrido. Seu corpo foi jogado na caverna e permaneceu milhares de anos coberta por uma camada de quase 13 metros de detritos minerais.&#10;&#9;Os estudos do crânio foram realizados pelo biólogo e cientista Walter Alves Neves, arqueólogo da USP- Universidade de São Paulo e que batizou o fóssil humano (Homo Sapiens) encontrado de Luzia, inspirado em Lucy, o célebre fóssil de Australopithecus afarensis de 3,5 milhões de anos, achado na Etiópia no anos de 1974.&#10;&#9;Luzia é o fóssil mais antigo encontrado na América, com cerca de 12.500 a 13.000 anos e encontra-se para estudos no Museu Nacional da Quinta da Boa Vista, no estado do Rio de Janeiro, porém não é aberto à visitação.&#10;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

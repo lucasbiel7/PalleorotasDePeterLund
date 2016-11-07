@@ -51,8 +51,7 @@ public class LoaderController implements Initializable {
         Thread thread = new Thread(() -> {
             List<Usuario> usuarios = new UsuarioDAO().pegarTodos();
             //Login Automatico
-            Sessao.usuario = usuarios.get(0);
-            System.out.println("Conexão estabelecida");
+            
         });
         thread.start();
         loader.setOnFinished((ActionEvent event) -> {

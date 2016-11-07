@@ -51,7 +51,7 @@
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem mnemonicParsing="false" text="Excluir" />
+                <MenuItem mnemonicParsing="false" onAction="#miExcluiQuestaoActionEvent" text="Excluir" />
               </items>
             </ContextMenu>
          </contextMenu>

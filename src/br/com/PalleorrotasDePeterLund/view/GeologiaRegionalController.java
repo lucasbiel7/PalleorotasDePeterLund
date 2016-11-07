@@ -7,34 +7,26 @@ package br.com.PalleorrotasDePeterLund.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 /**
  * FXML Controller class
  *
  * @author lucas
  */
-public class SobreController implements Initializable {
+public class GeologiaRegionalController implements Initializable {
 
     @FXML
-    private AnchorPane apPricipal;
-
+    private AnchorPane apPrincipal;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        new Timeline(new KeyFrame(Duration.millis(1), (ActionEvent event) -> {
-            Platform.exit();
-            System.exit(0);
-        })).play();
     }
+
 }

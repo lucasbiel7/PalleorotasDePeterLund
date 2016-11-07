@@ -5,7 +5,6 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
-import br.com.PalleorrotasDePeterLund.control.FacebookAuth;
 import br.com.PalleorrotasDePeterLund.control.FxManager;
 import javafx.application.Application;
 import javafx.stage.Stage;

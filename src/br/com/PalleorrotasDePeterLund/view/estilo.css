@@ -41,3 +41,6 @@
     -fx-border-color: -cor-secundaria;
 }
 
+.font-texto{
+    -fx-font-size:14px;
+}
