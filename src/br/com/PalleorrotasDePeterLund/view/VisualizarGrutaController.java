@@ -25,16 +25,31 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import javafx.scene.web.WebView;
+import javassist.bytecode.ByteArray;
 import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.PopOver;
 
@@ -53,8 +68,10 @@ public class VisualizarGrutaController implements Initializable {
     private FlowPane fpFotos;
     @FXML
     private Pagination pgFotos;
+//    @FXML
+//    private WebView wvConteudo;
     @FXML
-    private WebView wvConteudo;
+    private TextFlow tfConteudo;
     @FXML
     private StackPane spImageTexto;
     @FXML
@@ -76,19 +93,29 @@ public class VisualizarGrutaController implements Initializable {
         Platform.runLater(() -> {
             gruta = (Gruta) apPrincipal.getUserData();
             lbTitulo.setText(gruta.getNome());
-            wvConteudo.getEngine().loadContent("<html><head><style>"
-                    + "body {"
-                    + "background-color: #EFFEBA;"
-                    + "color:black;"
-                    + "}"
-                    + "div{"
-                    + "text-align: justify;"
-                    + "}"
-                    + "</style>"
-                    + "<head><body><div>" + gruta.getConteudo());
+
+//            wvConteudo.getEngine().loadContent("<html><head><style>"
+//                    + "body {"
+//                    + "background-color: #EFFEBA;"
+////                    + "background-color: transparent;"
+//                    + "color:white;"
+//                    + "}"
+//                    + "div{"
+//                    + "text-align: justify;"
+//                    + "}"
+//                    + "</style>"
+//                    + "<head><body><div>" + gruta.getConteudo());
+            Text text = new Text(gruta.getConteudo());
+            text.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.BOLD, FontPosture.REGULAR, 20));
+            text.setFill(Color.WHITE);
+            text.setTextAlignment(TextAlignment.JUSTIFY);
+            tfConteudo.setTextAlignment(TextAlignment.JUSTIFY);
+            tfConteudo.getChildren().add(text);
+            tfConteudo.setBackground(new Background(new BackgroundFill(new Color(0, 0, 0, 0.2), CornerRadii.EMPTY, Insets.EMPTY)));
             List<GrutaImagem> grutaImagens = new GrutaImagemDAO().pegarPorGrutaTexto(gruta, true);
             if (!grutaImagens.isEmpty()) {
                 ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(grutaImagens.get(0).getId().getImagem().getImagem())));
+                apConteudo.setBackground(new Background(new BackgroundImage(new Image(new ByteArrayInputStream(grutaImagens.get(0).getId().getImagem().getImagem())), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, true))));
                 imageView.setPreserveRatio(true);
                 imageView.setFitWidth(400);
                 imageView.setSmooth(true);
@@ -107,7 +134,7 @@ public class VisualizarGrutaController implements Initializable {
     private void tbFotoOnSelectionChanged(Event event) {
         if (imagens == null || imagens.isEmpty()) {
             imagens = new GrutaImagemDAO().pegarPorGruta(gruta);
-            COLUNA=(int) fpFotos.getWidth()/310;
+            COLUNA = (int) fpFotos.getWidth() / 310;
             pgFotos.setPageCount((int) Math.ceil(imagens.size() / (double) (LINHA * COLUNA)));
             carregarImageViews();
             limparImageView();

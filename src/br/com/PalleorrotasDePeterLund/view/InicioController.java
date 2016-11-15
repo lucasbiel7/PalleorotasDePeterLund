@@ -6,6 +6,7 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.FxManager;
+import br.com.PalleorrotasDePeterLund.control.ImageFactory;
 import br.com.PalleorrotasDePeterLund.control.Message;
 import br.com.PalleorrotasDePeterLund.control.Sessao;
 import br.com.PalleorrotasDePeterLund.control.dao.GrutaDAO;
@@ -63,6 +64,11 @@ public class InicioController implements Initializable {
         atualizarLogin();
         for (Gruta gruta : new GrutaDAO().pegarPorMuseu(false)) {
             MenuItem menuItem = new MenuItem(gruta.getNome());
+            
+            ImageView imageView=new ImageView(ImageFactory.loadImage("caverna.png"));
+            imageView.setFitHeight(35);
+            imageView.setPreserveRatio(true);
+            menuItem.setGraphic(imageView);
             menuItem.setOnAction((ActionEvent event) -> {
                 apPrincipal.getScene().setRoot(FxManager.carregarComponente("MostrarConteudo", FxManager.carregarComponente("VisualizarGruta", gruta)));
             });

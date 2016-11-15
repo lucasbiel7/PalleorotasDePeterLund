@@ -14,8 +14,8 @@
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <StackPane fx:id="spFoto" alignment="TOP_CENTER" layoutX="14.0" layoutY="86.0" minWidth="300.0" prefHeight="441.0" prefWidth="300.0" AnchorPane.leftAnchor="14.0" />
-      <ScrollPane fitToWidth="true" layoutX="300.0" layoutY="81.0" prefHeight="304.0" prefWidth="285.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="81.0">
+      <StackPane fx:id="spFoto" alignment="TOP_CENTER" layoutX="14.0" layoutY="5.0" minWidth="300.0" prefHeight="522.0" prefWidth="468.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
+      <ScrollPane fitToWidth="true" layoutX="300.0" layoutY="81.0" prefHeight="304.0" prefWidth="285.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="81.0">
          <content>
             <TextFlow lineSpacing="1.5" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY">
                <children>
@@ -31,9 +31,9 @@
             </TextFlow>
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="314.0" layoutY="6.0" prefHeight="74.0" prefWidth="271.0" text="O povo de Luzia" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="15.0">
+      <Label alignment="CENTER" layoutX="500.0" layoutY="6.0" prefHeight="74.0" prefWidth="218.0" text="O povo de Luzia" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="Edwardian Script ITC" size="50.0" />
          </font>
       </Label>
    </children>

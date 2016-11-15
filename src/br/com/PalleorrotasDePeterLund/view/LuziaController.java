@@ -6,12 +6,19 @@
 package br.com.PalleorrotasDePeterLund.view;
 
 import br.com.PalleorrotasDePeterLund.control.ImageFactory;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
 import org.controlsfx.control.InfoOverlay;
 
@@ -34,7 +41,9 @@ public class LuziaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ImageView imageView = new ImageView(ImageFactory.loadImage("conteudo/luzia.jpg"));
-        imageView.setFitWidth(300);
+        imageView.setFitWidth(450);
+        imageView.setFitHeight(600);
+        imageView.setPreserveRatio(false);
         InfoOverlay infoOverlay = new InfoOverlay(imageView, "Fonte: Fósseis no Brasil - Luzia.\n"
                 + "\n"
                 + "Disponível em: http://www.uol/noticias/especiais/fosseis-no-brasil-onde-estao-registros-humanos-antigos-no-pais.htm#o-brasil-nao-foi-descoberto-em-1500");

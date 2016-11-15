@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,6 +50,7 @@ public class LoaderController implements Initializable {
         Thread thread = new Thread(() -> {
             List<Usuario> usuarios = new UsuarioDAO().pegarTodos();
             //Login Automatico
+            Sessao.usuario=usuarios.get(0);
             
         });
         thread.start();

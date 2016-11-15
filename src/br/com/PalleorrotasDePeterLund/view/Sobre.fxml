@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.SobreController">
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="784.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.SobreController">
     <stylesheets>
-        <URL value="@estilo.css"/>
+        <URL value="@estilo.css" />
     </stylesheets>
+   <children>
+      <ImageView fitHeight="489.0" fitWidth="769.0" layoutX="18.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@image/fim.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="340.0" prefHeight="108.0" prefWidth="769.0" text="Alunas do 3º período de Geologia do Centro Universitário de Belo Horizonte - Unibh.&#10;Amabiliane Gonzaga Queiroz,Camila Fátima da Silva,&#10;Lays Dias Malta Lisboa e Sara Chaves Borges.&#10;Desenvolvedor do Software: Lucas Gabriel de Souza Dutra" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

@@ -44,3 +44,9 @@
 .font-texto{
     -fx-font-size:14px;
 }
+
+.loader{
+    -fx-background-image: url("image/Gruta-do-Maquine.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-effect: dropshadow(one-pass-box, black, 30, 0.5, 0, 1);
+}

@@ -2,31 +2,36 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="617.0" prefWidth="848.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.FormacaoGrutaController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="617.0" prefWidth="791.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.FormacaoGrutaController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="231.0" layoutY="14.0" prefHeight="92.0" prefWidth="593.0" text="Como se formam as cavernas?" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="384.0" layoutY="14.0" prefHeight="92.0" prefWidth="449.0" text="Origem das cavernas" textAlignment="CENTER" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="Edwardian Script ITC" size="54.0" />
          </font>
       </Label>
-      <StackPane fx:id="spFoto" layoutX="15.0" layoutY="95.0" maxHeight="495.0" maxWidth="358.0" minWidth="350.0" prefHeight="495.0" prefWidth="358.0" />
-      <TextFlow layoutX="395.0" layoutY="95.0" prefHeight="419.0" prefWidth="500.0" textAlignment="JUSTIFY" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="95.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#9;As belas grutas Rei do Mato, Lapinha e Maquiné, são formadas em rochas solúveis, especialmente as carbonáticas como os calcários, e pertencem a uma região cárstica em que há milhares de anos este local era fundo marinho. &#10;&#10;&#9;As rochas calcárias são formadas principalmente de carbonato de cálcio     (CaCO3), elas se originaram através da deposição de restos de seres orgânicos como recifes de corais, conchas, algas, entre outros no fundo dos mares. Num processo lento e são depositados em camadas empilhando-se uns sobre os outros, sofrendo assim uma pressão causada pelo peso das camadas de cima. Em um processo continuo dessa forma irão se compactar, cimentar e endurecer, transformando-se em uma rocha sedimentar calcária.&#10;&#10;&#9;As placas tectônicas estão em constante movimento,  o contato de duas placas origina o movimento convergente e faz com que as rochas no fundo do oceano se elevem e fiquem expostas. Com o levantamento das rochas e ação da água sobre as mesmas, ocorre uma reação química. A agua da chuva  em contato com o  gás carbônico da atmosfera e dos solos ira formar   uma agua acida. Esse fluído acido atravessara as primeiras camadas do solo e encontrara às rochas calcárias, percorrendo as mesmas pelas fendas e fraturas, que em contato com o ácido irá dissolve-lá abrindo condutos e galerias, com isso a caverna se origina. &#10;&#10;&#9;No interior dessas galerias, há vários tipos de formações, conhecidas como espeleotemas. Cada uma recebera  um nome específico de acordo com a sua aparência como couve-flor, cascata, cortina, estalactite, estalacmite, véu da noiva, entre outros, formações que levam milhões de anos para se formar." textAlignment="JUSTIFY" wrappingWidth="433.48748779296875">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-         </children>
-      </TextFlow>
+      <StackPane fx:id="spFoto" layoutX="15.0" layoutY="4.0" maxHeight="587.0" maxWidth="450.0" minWidth="350.0" prefHeight="587.0" prefWidth="450.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <ScrollPane fitToWidth="true" layoutX="400.0" layoutY="125.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="125.0">
+         <content>
+            <TextFlow prefHeight="477.0" prefWidth="433.0" textAlignment="JUSTIFY">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="&#9;As belas grutas Rei do Mato, Lapinha e Maquiné, são formadas em rochas solúveis, especialmente as carbonáticas como os calcários, e pertencem a uma região cárstica em que há milhares de anos este local era fundo marinho. &#10;&#10;&#9;As rochas calcárias são formadas principalmente de carbonato de cálcio     (CaCO3), elas se originaram através da deposição de restos de seres orgânicos como recifes de corais, conchas, algas, entre outros no fundo dos mares. Num processo lento e são depositados em camadas empilhando-se uns sobre os outros, sofrendo assim uma pressão causada pelo peso das camadas de cima. Em um processo continuo dessa forma irão se compactar, cimentar e endurecer, transformando-se em uma rocha sedimentar calcária.&#10;&#10;&#9;As placas tectônicas estão em constante movimento,  o contato de duas placas origina o movimento convergente e faz com que as rochas no fundo do oceano se elevem e fiquem expostas. Com o levantamento das rochas e ação da água sobre as mesmas, ocorre uma reação química. A agua da chuva  em contato com o  gás carbônico da atmosfera e dos solos ira formar   uma agua acida. Esse fluído acido atravessara as primeiras camadas do solo e encontrara às rochas calcárias, percorrendo as mesmas pelas fendas e fraturas, que em contato com o ácido irá dissolve-lá abrindo condutos e galerias, com isso a caverna se origina. &#10;&#10;&#9;No interior dessas galerias, há vários tipos de formações, conhecidas como espeleotemas. Cada uma recebera  um nome específico de acordo com a sua aparência como couve-flor, cascata, cortina, estalactite, estalacmite, véu da noiva, entre outros, formações que levam milhões de anos para se formar." textAlignment="JUSTIFY" wrappingWidth="433.48748779296875">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

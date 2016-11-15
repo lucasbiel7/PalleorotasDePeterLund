@@ -4,21 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="650.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.GeologiaRegionalController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="569.0" prefWidth="650.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.GeologiaRegionalController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="92.0" prefWidth="574.0" text="Geologia Regional – Região de Cordisburgo, Lagoa Santa e Sete Lagoas" textAlignment="CENTER" underline="true" wrapText="true" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Label alignment="CENTER" layoutX="351.0" layoutY="14.0" prefHeight="129.0" prefWidth="136.0" text="Geologia Regional – Região de Cordisburgo, Lagoa Santa e Sete Lagoas" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="14.0">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="Edwardian Script ITC" size="44.0" />
          </font>
       </Label>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="106.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="106.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="161.0" prefHeight="393.0" prefWidth="135.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="161.0">
          <content>
             <TextFlow prefHeight="289.0" prefWidth="574.0" textAlignment="JUSTIFY">
                <children>
@@ -31,5 +32,6 @@
             </TextFlow>
          </content>
       </ScrollPane>
+      <StackPane fx:id="spImagem" layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="443.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

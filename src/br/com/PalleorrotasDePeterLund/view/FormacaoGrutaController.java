@@ -5,6 +5,7 @@
  */
 package br.com.PalleorrotasDePeterLund.view;
 
+import br.com.PalleorrotasDePeterLund.control.ImageFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -31,8 +32,9 @@ public class FormacaoGrutaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ImageView imageView=new ImageView(new Image(getClass().getResourceAsStream("/br/com/PalleorrotasDePeterLund/view/image/comoForma.png")));
-        imageView.setFitWidth(350);
+        ImageView imageView=new ImageView(ImageFactory.loadImage("comoForma.png"));
+        imageView.setFitWidth(450);
+        imageView.setFitHeight(600);
         InfoOverlay infoOverlay=new InfoOverlay(imageView," 1- estalactite; 2- cortina; 3- coluna; 4-canudo(estalactite) 5- estalagmites, 6-helictite; 7- flores de aragonita; 8- casacata de pedra; 9- cristais \"dente-de-cão\" 10- pérolas de caverna; 11- \"vulcões\" 12- represesas travertino "
                 + "\nFonte: Cavernas Brasileiras; Clayton f. Lino; João Allievi, pg. 43");
         spFoto.getChildren().add(infoOverlay);

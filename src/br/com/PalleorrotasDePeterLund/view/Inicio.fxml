@@ -46,9 +46,30 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#btMuseuActionEvent" text="Castelinho" />
-                  <MenuItem mnemonicParsing="false" onAction="#miLuziaActionEvent" text="Luzia" />
-                  <MenuItem mnemonicParsing="false" onAction="#miPovoLuziaActionEvent" text="O povo de luzia" />
+                  <MenuItem mnemonicParsing="false" onAction="#btMuseuActionEvent" text="Castelinho">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/castle.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#miLuziaActionEvent" text="Luzia">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/caveira.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#miPovoLuziaActionEvent" text="O povo de luzia">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/caveira.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
                </items>
             </SplitMenuButton>
             <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" onAction="#btMapaActionEvent" prefHeight="250.0" prefWidth="500.0" text="Mapa" textAlignment="CENTER" wrapText="true">
@@ -59,7 +80,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" onAction="#btFormacaoGrutaActionEvent" prefHeight="250.0" prefWidth="500.0" text="Formação&#10;das&#10;Grutas" textAlignment="CENTER" wrapText="true">
+            <Button alignment="CENTER" contentDisplay="RIGHT" minWidth="100.0" mnemonicParsing="false" onAction="#btFormacaoGrutaActionEvent" prefHeight="250.0" prefWidth="500.0" text="Origem&#10;das&#10;cavernas" textAlignment="CENTER" wrapText="true">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

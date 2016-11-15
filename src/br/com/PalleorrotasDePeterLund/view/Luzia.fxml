@@ -9,18 +9,18 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="513.0" prefWidth="658.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.PalleorrotasDePeterLund.view.LuziaController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="513.0" prefWidth="658.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.LuziaController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="24.0" prefHeight="53.0" prefWidth="303.0" text="Luzia, a primeira brasileira encontrada na América " textAlignment="CENTER" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="500.0" layoutY="24.0" prefHeight="120.0" prefWidth="143.0" text="Luzia, a primeira brasileira encontrada na América " textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="Edwardian Script ITC" size="44.0" />
          </font>
       </Label>
-      <StackPane fx:id="spFoto" layoutX="14.0" layoutY="82.0" prefHeight="412.0" prefWidth="303.0" AnchorPane.leftAnchor="14.0" />
-      <ScrollPane fitToWidth="true" layoutX="350.0" layoutY="75.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="75.0">
+      <StackPane fx:id="spFoto" layoutX="14.0" layoutY="7.0" prefHeight="483.0" prefWidth="458.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
+      <ScrollPane fitToWidth="true" layoutX="350.0" layoutY="134.0" prefHeight="364.0" prefWidth="143.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="134.0">
          <content>
             <TextFlow prefHeight="315.0" prefWidth="500.0" textAlignment="JUSTIFY">
                <children>

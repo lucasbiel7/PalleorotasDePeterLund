@@ -7,13 +7,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="476.0" prefWidth="681.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.VisualizarGrutaController">
     <stylesheets>
@@ -28,21 +30,25 @@
                      <content>
                         <AnchorPane fx:id="apConteudo" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <HBox layoutX="14.0" layoutY="14.0" spacing="5.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
+                              <HBox layoutX="14.0" layoutY="14.0" spacing="5.0" styleClass="painel-transparente" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <children>
-                                    <StackPane fx:id="spImageTexto" alignment="TOP_CENTER" minWidth="400.0" prefHeight="421.0" prefWidth="278.0">
+                                    <StackPane fx:id="spImageTexto" alignment="TOP_CENTER" minWidth="400.0" prefHeight="421.0" prefWidth="278.0" visible="false">
                                        <HBox.margin>
                                           <Insets top="40.0" />
                                        </HBox.margin>
                                     </StackPane>
-                                    <VBox alignment="TOP_CENTER" prefWidth="1000.0">
+                                    <VBox alignment="TOP_CENTER" prefWidth="1000.0" styleClass="painel-transparente">
                                        <children>
-                                          <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" style="-fx-background-color: -cor-primaria;" textAlignment="CENTER">
+                                          <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" styleClass="fundo-escuro" textAlignment="CENTER">
                                              <font>
-                                                <Font name="System Bold" size="24.0" />
+                                                <Font name="Edwardian Script ITC" size="54.0" />
                                              </font>
                                           </Label>
-                                          <WebView fx:id="wvConteudo" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="1000.0" />
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="5000.0">
+                                             <content>
+                                                <TextFlow fx:id="tfConteudo" prefHeight="200.0" prefWidth="200.0" />
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </VBox>
                                  </children>
@@ -51,7 +57,14 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-               </content></Tab>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/conteudo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Tab>
           <Tab onSelectionChanged="#tbFotoOnSelectionChanged" text="Fotos">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -64,7 +77,14 @@
                         <Pagination fx:id="pgFotos" layoutX="62.0" layoutY="313.0" pageCount="1" prefHeight="48.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
-               </content></Tab>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/picture.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Tab>
         </tabs>
       </TabPane>
    </children>

@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: -cor-secundaria;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.LoaderController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="loader" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.PalleorrotasDePeterLund.view.LoaderController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label alignment="CENTER" layoutX="168.0" layoutY="39.0" prefHeight="248.0" prefWidth="265.0" styleClass="fundo-escuro" text="Palleorrotas&#10;de&#10;Peter lund" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+      <Label alignment="CENTER" layoutX="168.0" layoutY="39.0" prefHeight="277.0" prefWidth="300.0" styleClass="fundo-escuro" text="Paleorrotas&#10;de&#10;Peter lund" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
          <font>
-            <Font name="System Bold" size="38.0" />
+            <Font name="Curlz MT" size="60.0" />
          </font>
       </Label>
       <Label fx:id="lbCarregando" alignment="CENTER" layoutX="67.0" layoutY="343.0" styleClass="fundo-escuro" text="Carregando" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">

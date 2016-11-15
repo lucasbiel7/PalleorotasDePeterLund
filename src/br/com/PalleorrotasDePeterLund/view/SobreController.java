@@ -32,7 +32,7 @@ public class SobreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        new Timeline(new KeyFrame(Duration.millis(1), (ActionEvent event) -> {
+        new Timeline(new KeyFrame(Duration.seconds(5), (ActionEvent event) -> {
             Platform.exit();
             System.exit(0);
         })).play();
