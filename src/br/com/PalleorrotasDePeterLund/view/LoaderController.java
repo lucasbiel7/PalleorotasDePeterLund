@@ -50,7 +50,7 @@ public class LoaderController implements Initializable {
         Thread thread = new Thread(() -> {
             List<Usuario> usuarios = new UsuarioDAO().pegarTodos();
             //Login Automatico
-            Sessao.usuario=usuarios.get(0);
+//            Sessao.usuario=usuarios.get(0);
             
         });
         thread.start();
